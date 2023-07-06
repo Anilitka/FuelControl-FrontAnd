@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -13,12 +13,23 @@ export class LoginFormComponent {
 loginForm: FormGroup;
 
 constructor(
-  private router: Router
-) { }
+  private router: Router,
+  private lb: FormBuilder
+) 
+{
+this.loginForm = this.lb.group({
+  email:['', Validators.required],
+  passwrd:['', Validators.required]
+})
+}
 
 logIn(){
-  this.router.navigate([
+  if(this.loginForm.valid){
+    this.loginForm.reset();
+    this.router.navigate([
     'Home'
-  ])
+  ])  
+  }
+
 }
 }
