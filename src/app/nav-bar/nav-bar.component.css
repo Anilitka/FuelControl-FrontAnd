@@ -1,0 +1,77 @@
+.sidebar {
+  width: 215px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.sidebar hr {
+  border-color: #fff;
+  margin-top: 2px;
+  margin-bottom: 10px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 15px;
+  margin-bottom: auto;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+
+}
+
+.sidebar .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar .dropdown-toggle img {
+  margin-right: 10px;
+}
+
+.dropdown-menu-dark {
+  background-color: #343a40;
+  color: #fff;
+}
+
+
+
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .nav-link svg {
+  margin-right: 8px;
+}
+
+.sidebar .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar .dropdown-toggle img {
+  margin-right: 10px;
+}
