@@ -9,14 +9,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-<<<<<<< HEAD
 import { HistoryComponent } from './history/history.component';
 import {TabsModule} from "ngx-bootstrap/tabs";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-=======
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
->>>>>>> 72bd0a75ea9f5298658851e9d4a541d52df5f4e5
 
 
 
@@ -27,11 +24,8 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     NavBarComponent,
     LoginFormComponent,
     HomeComponent,
-<<<<<<< HEAD
     HistoryComponent,
-=======
     RegistrationFormComponent,
->>>>>>> 72bd0a75ea9f5298658851e9d4a541d52df5f4e5
 
   ],
   imports: [
@@ -44,6 +38,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     TabsModule,
     BrowserAnimationsModule,
     CommonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
