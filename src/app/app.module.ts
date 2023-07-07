@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
 
 
 
@@ -20,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     NavBarComponent,
     LoginFormComponent,
     HomeComponent,
+    RegistrationFormComponent,
 
   ],
   imports: [

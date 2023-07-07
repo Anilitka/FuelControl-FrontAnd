@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent {
 loginForm: FormGroup;
+submitted = false;
 
 constructor(
   private router: Router,
@@ -18,18 +19,24 @@ constructor(
 ) 
 {
 this.loginForm = this.lb.group({
-  email:['', Validators.required],
-  passwrd:['', Validators.required]
+  email:[null, Validators.required],
+  passwrd:[null, Validators.required]
 })
 }
 
 logIn(){
-  if(this.loginForm.valid){
-    this.loginForm.reset();
-    this.router.navigate([
-    'Home'
-  ])  
-  }
+  this.submitted = true;
 
+  if (this.loginForm.invalid) {
+    return;
+  }
+  else if(this.loginForm.valid){
+    this.loginForm.reset();
+    this.router.navigate(['home'])  
+  }
+  
+}
+register(){
+  this.router.navigate(['registration'])
 }
 }

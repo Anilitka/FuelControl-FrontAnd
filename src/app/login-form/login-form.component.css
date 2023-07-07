@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    
 }
 .container-fluid{
     width: 100%;
@@ -62,9 +64,23 @@ box-shadow:0px 0px 40px 0px rgb(102, 101, 101);
 }
 
 input.ng-valid{
-    border: 1px solid rgb(87, 156, 87);
+    border: 2px solid rgb(87, 156, 87);
 }
 input.ng-invalid.ng-touched{
-    border: 1px solid rgb(205, 7, 7);
+    border: 2px solid rgb(205, 7, 7);
+}
+.logForm p{
+    text-align: center;
+    margin-top: 10px;
+}
+.logForm a{
+    text-decoration: none;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bolder;
+    cursor: pointer;
+    color: rgb(16, 110, 218);
+}
+.logForm p{
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
