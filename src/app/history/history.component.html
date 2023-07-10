@@ -5,12 +5,42 @@
       <input class="form-control mr-2" #search style="width: 300px" placeholder="Search" type="text">
     </div>
   </div>
-  <div class="tabset-container">
-    <tabset>
-      <tab heading="Card Number" id="tab1">Card Number</tab>
-      <tab heading="Car Number">Car Number</tab>
-      <tab heading="Liters">Liters</tab>
-      <tab heading="Fill Date/Time">Fill Date/Time</tab>
-    </tabset>
+  <div class="table-container">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Card Number</th>
+        <th>Car Number</th>
+        <th>Liters</th>
+        <th>Fill Date/Time</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let data of dummyData">
+        <tr (click)="data.expanded = !data.expanded">
+          <td>{{ data.cardNumber }}</td>
+          <td>{{ data.carNumber }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr *ngIf="data.expanded">
+          <td></td>
+          <td></td>
+          <td colspan="2">
+            <table>
+              <tbody>
+              <tr *ngFor="let item of data.data">
+                <td></td>
+                <td></td>
+                <td class="liters-column">{{ item.liters }}</td>
+                <td class="fill-datetime-column">{{ item.fillDateTime }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
   </div>
 </div>

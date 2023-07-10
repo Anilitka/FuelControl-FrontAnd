@@ -38,7 +38,8 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     TabsModule,
     BrowserAnimationsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
