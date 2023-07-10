@@ -23,7 +23,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class HistoryComponent implements OnInit{
 
   dummyData: DummyData[] = [];
-  totalAmount: number = 0;
+  totalAmounts: { [carNumber: string]: number } = {};
   constructor(private http: HttpClient) {}
 
   
@@ -33,8 +33,8 @@ export class HistoryComponent implements OnInit{
       .subscribe({
         next: (data: DummyData[]) => {
           this.dummyData = data;
-          this.totalAmount = this.getTotalAmount();
-
+          this.calculateTotalAmounts();
+          console.log(this.totalAmounts);
         },
         error: (error) => {
           console.error('Error loading dummy data:', error);
@@ -46,17 +46,15 @@ export class HistoryComponent implements OnInit{
     
   }
 
-  getTotalAmount() {
-    return this.dummyData.map(item => item.liters)
-      .reduce((a,  value) => a + value, 0);
-    
+
+
+  calculateTotalAmounts(): void {
+    this.dummyData.forEach((item) => {
+      const carNumber = item.carNumber;
+      const sumOfLiters = item.data.reduce((total, data) => total + data.liters, 0);
+      this.totalAmounts[carNumber] = sumOfLiters;
+    });
   }
-  
-  // getTotalAmount(){
-  //   let totalAmount = 0;
-  //   this.dummyData.forEach(data => totalAmount += data.liters);
-  //   return totalAmount;
-  // }
 
 }
 

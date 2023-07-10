@@ -20,7 +20,7 @@
         <tr (click)="data.expanded = !data.expanded" style="cursor: pointer;">
           <td>{{ data.cardNumber }}</td>
           <td>{{ data.carNumber }}</td>
-          <td >{{ totalAmount}}</td>
+          <td >sum: {{ totalAmounts[data.carNumber] }}</td>
           <td></td>
         </tr>
         <tr *ngIf="data.expanded">
