@@ -16,17 +16,13 @@
 }
 
 .fill-datetime-column {
-  padding-left: 330px;
+  padding-left: 280px;
 }
-
-
-
-tr {
-  transition: background-color 300ms ease-in-out;
+.headtr th{
+  width: 30%;
 }
-
-tr.expanded {
-  background-color: lightgray;
+.literth{
+  width: 20% !important;
 }
 
 td[colspan="2"] {

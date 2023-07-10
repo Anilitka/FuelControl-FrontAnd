@@ -8,19 +8,19 @@
   <div class="table-container">
     <table class="table">
       <thead>
-      <tr>
-        <th>Card Number</th>
-        <th>Car Number</th>
-        <th>Liters</th>
-        <th>Fill Date/Time</th>
+      <tr class="headtr">
+        <th >Card Number</th>
+        <th >Car Number</th>
+        <th class="literth">Liters</th>
+        <th >Fill Date/Time</th>
       </tr>
       </thead>
       <tbody>
       <ng-container *ngFor="let data of dummyData">
-        <tr (click)="data.expanded = !data.expanded">
+        <tr (click)="data.expanded = !data.expanded" style="cursor: pointer;">
           <td>{{ data.cardNumber }}</td>
           <td>{{ data.carNumber }}</td>
-          <td></td>
+          <td >{{ totalAmount}}</td>
           <td></td>
         </tr>
         <tr *ngIf="data.expanded">
@@ -30,8 +30,6 @@
             <table>
               <tbody>
               <tr *ngFor="let item of data.data">
-                <td></td>
-                <td></td>
                 <td class="liters-column">{{ item.liters }}</td>
                 <td class="fill-datetime-column">{{ item.fillDateTime }}</td>
               </tr>
