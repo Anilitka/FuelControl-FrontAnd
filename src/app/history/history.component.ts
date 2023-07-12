@@ -42,10 +42,8 @@ export class HistoryComponent implements OnInit{
       });
 
     console.log(this.dummyData);
-    
-    
-  }
 
+  }
 
 
   calculateTotalAmounts(): void {
@@ -55,6 +53,8 @@ export class HistoryComponent implements OnInit{
       this.totalAmounts[carNumber] = sumOfLiters;
     });
   }
+
+  filterTxt:any = '';
 
 }
 

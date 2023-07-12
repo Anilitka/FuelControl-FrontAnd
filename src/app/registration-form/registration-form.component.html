@@ -23,6 +23,17 @@
             Please enter the password
         </div>
       </div>
+       <div class="rolediv">
+     
+      <select formControlName="role" ng-model="myInput" class="form-control roleformcontrol" (change)="changeRole($event)" required>
+
+      <option *ngFor="let role of rolesList">{{role}}</option>
+      </select>
+       <div *ngIf="regForm.controls['role'].invalid &&  (submitted || regForm.controls['role'].touched) " class="alert">
+          Please choose your role
+      </div>
+       </div>
+
 
        <button type="submit" class="btn btn-success regbtn" (click)="reg()">Registrate</button>
     </div>

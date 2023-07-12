@@ -14,6 +14,9 @@ import {TabsModule} from "ngx-bootstrap/tabs";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { FilterPipe } from './filter.pipe';
+import { ModalComponent } from './modal/modal.component';
+
 
 
 
@@ -26,7 +29,8 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     HomeComponent,
     HistoryComponent,
     RegistrationFormComponent,
-
+    FilterPipe,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

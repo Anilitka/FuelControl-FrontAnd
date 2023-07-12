@@ -34,5 +34,40 @@
         "fillDateTime": "2023-07-12 14:30:00"
       }
     ]
+  },
+  {
+    "cardNumber": "9112",
+    "carNumber": "GHI789",
+    "data": [
+      {
+        "liters": 50,
+        "fillDateTime": "2023-07-10 10:00:00"
+      },
+      {
+        "liters": 10,
+        "fillDateTime": "2023-07-11 09:30:00"
+      },
+      {
+        "liters": 40,
+        "fillDateTime": "2023-07-12 12:15:00"
+      }
+    ]
+  },  {
+    "cardNumber": "3415",
+    "carNumber": "LMN156",
+    "data": [
+      {
+        "liters": 50,
+        "fillDateTime": "2023-07-10 10:00:00"
+      },
+      {
+        "liters": 50,
+        "fillDateTime": "2023-07-11 09:30:00"
+      },
+      {
+        "liters": 25,
+        "fillDateTime": "2023-07-12 12:15:00"
+      }
+    ]
   }
 ]

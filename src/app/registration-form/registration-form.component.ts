@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
@@ -19,7 +20,8 @@ constructor(
 {
 this.regForm = this.rb.group({
   email:[null, Validators.required],
-  passwrd:[null, Validators.required]
+  passwrd:[null, Validators.required],
+  role:['', Validators.required]
 })
  
 }
@@ -32,6 +34,11 @@ reg(){
    this.router.navigate(['home'])  
   }
  
+}
+rolesList: any = ['Choose your role:','Mechanic manager','Technical department manager']
+
+changeRole(e) {
+  console.log(e.target.value);
 }
 
 }
