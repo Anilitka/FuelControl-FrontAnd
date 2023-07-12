@@ -21,6 +21,8 @@ import { ModalComponent } from './modal/modal.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,8 @@ import { ModalComponent } from './modal/modal.component';
     BrowserAnimationsModule,
     CommonModule,
     ReactiveFormsModule,
-
+    NgbModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent],
