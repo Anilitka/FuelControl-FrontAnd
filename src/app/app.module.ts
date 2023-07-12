@@ -22,6 +22,8 @@ import { NotificationModalComponent } from './notification-modal/notification-mo
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import { NotificationModalComponent } from './notification-modal/notification-mo
     BrowserAnimationsModule,
     CommonModule,
     ReactiveFormsModule,
-
+    NgbModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent],

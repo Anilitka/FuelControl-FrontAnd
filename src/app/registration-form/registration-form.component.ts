@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import Swal from 'sweetalert2';
+
+
 
 
 @Component({
@@ -15,7 +18,8 @@ submitted = false
 
 constructor(
   private router: Router,
-  private rb: FormBuilder
+  private rb: FormBuilder,
+  
 ) 
 {
 this.regForm = this.rb.group({
@@ -23,7 +27,7 @@ this.regForm = this.rb.group({
   passwrd:[null, Validators.required],
   role:['', Validators.required]
 })
- 
+
 }
 reg(){
   this.submitted = true;
@@ -31,14 +35,18 @@ reg(){
   if (this.regForm.invalid) {
     return;
   }else if(this.regForm.valid){
-   this.router.navigate(['home'])  
-  }
+   this.router.navigate(['login'])  
+  
+
+   Swal.fire({title:'Your registration information is sent successfully', confirmButtonColor: 'rgb(38, 122, 38)',} )
  
+}
 }
 rolesList: any = ['Choose your role:','Mechanic manager','Technical department manager']
 
 changeRole(e) {
   console.log(e.target.value);
 }
+
 
 }
