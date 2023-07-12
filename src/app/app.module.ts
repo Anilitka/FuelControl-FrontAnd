@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { FilterPipe } from './filter.pipe';
 import { ModalComponent } from './modal/modal.component';
+import { NotificationModalComponent } from './notification-modal/notification-modal.component';
 
 
 
@@ -30,7 +31,8 @@ import { ModalComponent } from './modal/modal.component';
     HistoryComponent,
     RegistrationFormComponent,
     FilterPipe,
-    ModalComponent
+    ModalComponent,
+    NotificationModalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title">Notification Center</h4>
+</div>
+<div class="modal-body">
+  <div *ngFor="let user of data" class="user-control">
+    <div class="user-info">
+      <span>{{ user.Username }}</span>
+    </div>
+    <div class="user-actions">
+      <button class="btn btn-success">Approve</button>
+      <button class="btn btn-danger">Decline</button>
+    </div>
+  </div>
+</div>
