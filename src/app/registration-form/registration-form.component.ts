@@ -19,8 +19,8 @@ submitted = false
 constructor(
   private router: Router,
   private rb: FormBuilder,
-  
-) 
+
+)
 {
 this.regForm = this.rb.group({
   email:[null, Validators.required],
@@ -29,17 +29,17 @@ this.regForm = this.rb.group({
 })
 
 }
-reg(){
+register(){
   this.submitted = true;
 
   if (this.regForm.invalid) {
     return;
   }else if(this.regForm.valid){
-   this.router.navigate(['login'])  
-  
+   this.router.navigate(['login'])
+
 
    Swal.fire({title:'Your registration information is sent successfully', confirmButtonColor: 'rgb(38, 122, 38)',} )
- 
+
 }
 }
 rolesList: any = ['Choose your role:','Mechanic manager','Technical department manager']

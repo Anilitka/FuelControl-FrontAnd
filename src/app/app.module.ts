@@ -17,10 +17,13 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { FilterPipe } from './filter.pipe';
 import { ModalComponent } from './modal/modal.component';
 import { NotificationModalComponent } from './notification-modal/notification-modal.component';
+import {JwtModule} from "@auth0/angular-jwt";
 
 
 
-
+export function tokenGetter() {
+  return localStorage.getItem('access_token'); // Adjust this to retrieve the token from the desired source
+}
 
 
 
@@ -48,7 +51,15 @@ import { NotificationModalComponent } from './notification-modal/notification-mo
     CommonModule,
     ReactiveFormsModule,
     NgbModule,
-  
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['example.com'], // Adjust this to match your domain
+        disallowedRoutes: ['example.com/auth/'], // Adjust this to match your authentication routes
+      },
+    }),
+
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -37,7 +37,7 @@ export class LoginFormComponent {
     }
 
   }
-  register(){
+  goToregistration(){
     this.router.navigate(['registration'])
   }
 }

@@ -16,7 +16,7 @@
             Please enter the login
         </div>
       </div>
-      
+
       <div class="form-floating mt-3 mb-3 passwordinp ">
         <input type="password" ng-model="myInput" class="form-control" id="pwd" placeholder="Enter password" name="pswd" formControlName="passwrd" required>
         <label for="pwd">Password</label>
@@ -25,7 +25,7 @@
         </div>
       </div>
        <div class="rolediv">
-     
+
       <select formControlName="role" ng-model="myInput" class="form-control roleformcontrol" (change)="changeRole($event)" required>
 
       <option *ngFor="let role of rolesList">{{role}}</option>
@@ -36,9 +36,9 @@
        </div>
 
 
-       <button type="submit" id="liveToastBtn" class="btn btn-success regbtn" (click)="reg()">Registrate</button>
+       <button type="submit" id="liveToastBtn" class="btn btn-success regbtn" (click)="register()">Registrate</button>
 
-       
+
     </div>
 
 </form>
