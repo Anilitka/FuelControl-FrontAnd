@@ -3,6 +3,8 @@ import { ModalComponent } from '../modal/modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../services/notification.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import {TokenService} from "../services/token.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,26 +12,39 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit{
-  token: string = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwicm9sZSI6IlRlY2huaWNhbERlcGFydG1lbnRNYW5hZ2VyIiwibmJmIjoxNjg5MjM0MDAwLCJleHAiOjE2ODkzMjA0MDAsImlhdCI6MTY4OTIzNDAwMH0.ytYhKPitP9RCuov4gVvpsZSsgfe1FYcqbBLI5bQyqPo8QPx652Zirdmn-nYOxy_aOvBx43unufDMc4hJ_X6_iw';
-  payload: any;
+  // token: string = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwicm9sZSI6IlRlY2huaWNhbERlcGFydG1lbnRNYW5hZ2VyIiwibmJmIjoxNjg5MjM0MDAwLCJleHAiOjE2ODkzMjA0MDAsImlhdCI6MTY4OTIzNDAwMH0.ytYhKPitP9RCuov4gVvpsZSsgfe1FYcqbBLI5bQyqPo8QPx652Zirdmn-nYOxy_aOvBx43unufDMc4hJ_X6_iw';
+  // payload: any;
+
+  isAdmin: boolean;
+  userName: string;
 
   ngOnInit(): void {
+      this.checkAdmin();
 
+    this.userService.getUsername().subscribe(username => {
+      this.userName = username;
+      console.log('Username:', this.userName);
+    });
   }
 
-  constructor(private _modal: NgbModal, private notificationService: NotificationService, private jwtHelper: JwtHelperService) {
-    this.extractPayloadFromToken();
+  constructor(
+    private _modal: NgbModal,
+    private notificationService: NotificationService,
+    private tokenService: TokenService,
+    private userService: UserService
+  ) {
     this.getUserRole();
   }
 
-  extractPayloadFromToken() {
-    this.payload = this.jwtHelper.decodeToken(this.token);
 
+  checkAdmin(){
+    if(this.tokenService.getUserRole().includes("Manager")){
+      this.isAdmin=true;
+    }
   }
-
   getUserRole(){
-    console.log('I return roles',this.payload.role);
-    return this.payload.role;
+    console.log('I return roles',this.tokenService.getUserRole());
+    return this.tokenService.getUserRole();
   }
 
   open() {
@@ -39,6 +54,8 @@ export class NavBarComponent implements OnInit{
   openNotification() {
     this.notificationService.openNotificationModal();
   }
+
+
 
 
 }

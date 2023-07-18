@@ -4,11 +4,11 @@
 <div class="modal-body">
   <div *ngFor="let user of data" class="user-control">
     <div class="user-info">
-      <span>{{ user.Username }}</span>
+      <span>{{ user.username }}</span>
     </div>
     <div class="user-actions">
-      <button class="btn btn-success">Approve</button>
-      <button class="btn btn-danger">Decline</button>
+      <button class="btn btn-success" (click)="approveUser(user)">Approve</button>
+      <button class="btn btn-danger" (click)="declineUser(user)">Decline</button>
     </div>
   </div>
 </div>

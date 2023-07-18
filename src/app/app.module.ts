@@ -9,23 +9,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { HistoryComponent } from './history/history.component';
+import { HistoryComponent} from './history/history.component';
 import {TabsModule} from "ngx-bootstrap/tabs";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { FilterPipe } from './filter.pipe';
 import { ModalComponent } from './modal/modal.component';
 import { NotificationModalComponent } from './notification-modal/notification-modal.component';
-import {JwtModule} from "@auth0/angular-jwt";
-
+import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
+import {TokenService} from "./services/token.service";
+import {defineLocale, enGbLocale} from "ngx-bootstrap/chronos";
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 
 export function tokenGetter() {
   return localStorage.getItem('access_token'); // Adjust this to retrieve the token from the desired source
 }
 
-
+defineLocale('enGb', enGbLocale);
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ export function tokenGetter() {
     RegistrationFormComponent,
     FilterPipe,
     ModalComponent,
-    NotificationModalComponent
+    NotificationModalComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ export function tokenGetter() {
     CommonModule,
     ReactiveFormsModule,
     NgbModule,
+    BsDatepickerModule.forRoot(),
 
     JwtModule.forRoot({
       config: {
@@ -61,8 +65,8 @@ export function tokenGetter() {
     }),
 
   ],
-  providers: [],
+  providers: [JwtHelperService, TokenService,DatePipe],
   bootstrap: [AppComponent],
-  exports: [FormsModule, ReactiveFormsModule ]
+  exports: [FormsModule, ReactiveFormsModule, ]
 })
 export class AppModule { }
