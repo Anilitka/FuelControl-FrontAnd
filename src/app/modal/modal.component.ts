@@ -17,21 +17,26 @@ constructor(
 
   private rb: FormBuilder,
   private _modal : NgbModal
- 
-) 
+
+)
 {
 this.regForm = this.rb.group({
   email:[null, Validators.required],
   passwrd:[null, Validators.required],
   role:['', Validators.required]
 })
- 
+
 }
 
-rolesList: any = ['Choose role:','Mechanic manager','Technical department manager']
+rolesList: any = ['Choose role:','User','Technical department manager']
 
 changeRole(e) {
   console.log(e.target.value);
+  if(e.target.value == 'User'){
+    this.regForm.value.role = 'User'
+  }else if(e.target.value == 'Technical department manager'){
+    this.regForm.value.role = 'TechnicalDepartmentManager'
+  }
 }
 
 ureg(){
@@ -42,7 +47,7 @@ ureg(){
   }else if(this.regForm.valid){
    this._modal.dismissAll();
   }
- 
+
 }
 
 }
