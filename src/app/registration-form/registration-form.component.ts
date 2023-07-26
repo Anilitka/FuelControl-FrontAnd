@@ -48,7 +48,7 @@ register(){
 
 
    this.router.navigate(['login'])
-    this.http.post<any>('https://localhost:5001/api/Authorization/UserRegistration', regData).subscribe({
+    this.http.post<any>('https://wialonfuelhistorybe.mygps.ge:4436/api/Authorization/UserRegistration', regData).subscribe({
       next: (response) =>
       {
         console.log('I am logging reg response: ',response);

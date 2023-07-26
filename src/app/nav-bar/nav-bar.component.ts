@@ -25,6 +25,8 @@ export class NavBarComponent implements OnInit{
       this.userName = username;
       console.log('Username:', this.userName);
     });
+
+
   }
 
   constructor(

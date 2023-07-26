@@ -19,7 +19,7 @@ export class NotificationService {
 
     // Add cache-busting parameter
     const timestamp = new Date().getTime();
-    const url = `https://localhost:5001/api/Manager/GetFilteredUsers?timestamp=${timestamp}`;
+    const url = `https://wialonfuelhistorybe.mygps.ge:4436/api/Manager/GetFilteredUsers?timestamp=${timestamp}`;
 
     // Fetch the JSON file
     this.http.get(url, {headers, responseType: "json"})

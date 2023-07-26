@@ -28,7 +28,7 @@ export class NotificationModalComponent {
     const body = { status: true }; // Replace with your desired boolean value or variable
 
     // Make the PATCH request
-    this.http.patch('https://localhost:5001/api/Manager/UpdateByStatus?id=' + user.id , body, { headers })
+    this.http.patch('https://wialonfuelhistorybe.mygps.ge:4436/api/Manager/UpdateByStatus?id=' + user.id , body, { headers })
       .subscribe({
         next: (response: any) => {
           console.log('User approval successful:', response);
@@ -55,7 +55,7 @@ export class NotificationModalComponent {
     const body = { status: false }; // Replace with your desired boolean value or variable
 
     // Make the PATCH request
-    this.http.patch('https://localhost:5001/api/Manager/UpdateByStatus?id=' + user.id, body, { headers })
+    this.http.patch('https://wialonfuelhistorybe.mygps.ge:4436/api/Manager/UpdateByStatus?id=' + user.id, body, { headers })
       .subscribe({
         next: (response: any) => {
           console.log('User declining successful:', response);

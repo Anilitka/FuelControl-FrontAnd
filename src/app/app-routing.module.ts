@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HistoryComponent},
   {path: 'login', component: LoginFormComponent},
   {path: 'history', component: HistoryComponent},
   {path: '', component: LoginFormComponent},
