@@ -21,6 +21,8 @@ import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
 import {TokenService} from "./services/token.service";
 import {defineLocale, enGbLocale} from "ngx-bootstrap/chronos";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import { CarRegModalComponent } from './car-reg-modal/car-reg-modal.component';
+import { CarDeleteModalComponent } from './car-delete-modal/car-delete-modal.component';
 
 
 export function tokenGetter() {
@@ -40,6 +42,8 @@ defineLocale('enGb', enGbLocale);
     FilterPipe,
     ModalComponent,
     NotificationModalComponent,
+    CarRegModalComponent,
+    CarDeleteModalComponent,
 
   ],
   imports: [

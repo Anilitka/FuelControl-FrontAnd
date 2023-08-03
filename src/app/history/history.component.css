@@ -14,8 +14,19 @@
   white-space: nowrap;
   padding: 5px;
 }
-.firstlabel{
+.leftBtn{
+  margin-right: 5px;
+}
+@media (max-width:1509){
+  .leftBtn{
+    margin-right: 0px;
+  }
+}
 
+.page_info{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .history-content {

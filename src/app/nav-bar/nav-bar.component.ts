@@ -5,6 +5,9 @@ import { NotificationService } from '../services/notification.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {TokenService} from "../services/token.service";
 import {UserService} from "../services/user.service";
+import { CarRegModalComponent } from '../car-reg-modal/car-reg-modal.component';
+import { CarDeleteModalComponent } from '../car-delete-modal/car-delete-modal.component';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -52,7 +55,12 @@ export class NavBarComponent implements OnInit{
   open() {
     this._modal.open(ModalComponent);
   }
-
+  openModal(){
+    this._modal.open(CarRegModalComponent)
+  }
+  openDeleteModal(){
+    this._modal.open(CarDeleteModalComponent)
+  }
   openNotification() {
     this.notificationService.openNotificationModal();
   }

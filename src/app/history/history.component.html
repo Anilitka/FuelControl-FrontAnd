@@ -1,3 +1,6 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 <app-nav-bar></app-nav-bar>
 <div class="history-content">
   <div class="search-container">
@@ -24,11 +27,11 @@
       </thead>
       <tbody>
       <ng-container *ngFor="let data of carsData | search: filterTxt">
-        <tr (click)="data.expanded = !data.expanded; returnCardID(data.cardID); fillCarsInfoById()" style="cursor: pointer;">
+        <tr (click)=" returnCardID(data.cardID); fillCarsInfoById(); getCountById()" style="cursor: pointer;">
           <td>{{ data.cardID }}</td>
           <td>{{ data.carNumber }}</td>
-<!--          <td >sum: {{ totalAmounts[data.carNumber] }}</td>-->
-          <td>sum: {{ totalAmounts[data.carNumber] | number:'1.2-2' }}</td>
+
+          <td>sum: {{data.liters}} </td>
 
           <td></td>
         </tr>
@@ -42,14 +45,33 @@
                 <td class="liters-column">{{ item.liters }}</td>
                 <td class="fill-datetime-column">{{ item.timeInserted | date:'yyyy-MM-dd ' }}<strong>{{ item.timeInserted | date:'HH:mm' }}</strong></td>
 
-
               </tr>
+
+              <tr>
+                <td align="right">
+                  <div class="pagination" style="margin-top: 15px;">
+                  <div class ="page_info float-right">
+                  <button class="btn btn-primary leftBtn"  (click)="previousPage()"><i class="fa-solid fa-chevron-left"></i></button>
+                  <button class="btn btn-primary rightBtn" (click)="nextPage()" ><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+              </div>
+                </td>
+              </tr>
+
+
               </tbody>
             </table>
           </td>
         </tr>
+        
       </ng-container>
       </tbody>
+      
     </table>
+  </div>
+  <div class="pagination2" style="margin-top: 15px;">
+    <div class ="page_info">
+    <button class="btn btn-primary leftBtn"  (click)="previousMainPage()"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="btn btn-primary rightBtn" (click)="nextMainPage()" ><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 </div>

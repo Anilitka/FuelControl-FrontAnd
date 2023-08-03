@@ -5,8 +5,8 @@
 
 <div class="sidebar">
   <a routerLink="/" class="sidebar-brand">
-    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-    <span class="fs-4 logo">Wialon</span>
+    <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> -->
+    <span class="fs-4 logo">MYGPS Admin</span>
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
@@ -19,12 +19,27 @@
     </li>
 
 
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link text-white" routerLink="/home" aria-current="page" routerLinkActive="active">-->
-<!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>-->
-<!--        Card Number-->
-<!--      </a>-->
-<!--    </li>-->
+   <li class="nav-item regitem">
+    <div class="dropdown">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Car Control
+      </a>
+    
+      <ul class="dropdown-menu ">
+        <li class="carReg">
+          <a class="nav-link text-white" aria-current="page" routerLinkActive="active" (click)="openModal()">
+  
+          Car Registration
+        </a>
+      </li>
+        <li class="carDel">
+          <a class="dropdown-item nav-link text-white " (click)="openDeleteModal()">Delete Car</a>
+        </li>
+        
+      </ul>
+    </div>
+  </li> 
+
 <!--    <li class="nav-item">-->
 <!--      <a class="nav-link text-white" routerLink="#" routerLinkActive="active">-->
 <!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>-->

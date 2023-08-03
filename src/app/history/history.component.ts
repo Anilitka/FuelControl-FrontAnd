@@ -39,9 +39,21 @@ export class HistoryComponent implements OnInit{
   endDate: Date;
   startDateFormatted : any;
   endDateFormatted : any;
-
+  ids: number[] = [];
+  id:string;
+  currentPage: number = 1;
+  itemsPerPage: number;
+  totalItems: any;
+  totalPages: any;
   @Output() cardIDClicked: EventEmitter<string> = new EventEmitter<string>();
-
+  pageindex:number = 1;
+  pagesize: number = 16;
+  totalData: number;
+  totalIdCount: number;
+  totalDatabyId: number;
+  idpagesize: number = 10;
+  totalIdPages: number;
+  previousCardID: string = '';
 
   // formatDateTime(dateTime: string): string {
   //   const date = new Date(dateTime);
@@ -50,21 +62,30 @@ export class HistoryComponent implements OnInit{
   //   return `${formattedDate} ${formattedTime}`;
   // }
 
-  returnCardID(cardID: string): void {
-    this.cardIDClicked.emit(cardID);
-    console.log(cardID);
-    this.chosenId = cardID;
+
+
+returnCardID(cardID: string): void {
+  if (this.chosenId === this.previousCardID) {
+      this.previousCardID = '';
   }
+    this.chosenId = cardID;
+    this.carsData.forEach((data) => {
+    if (data.cardID !== this.chosenId) {
+        data.expanded = false; 
+    } else {
+        data.expanded = !data.expanded; 
+    }
+  });
+}
 
-
-  ngOnInit(): void {
+ngOnInit(): void {
 
     this.fillCarsInfo();
     console.log('I am logging car list data:',this.carsData);
+    this.getAllCount();
+}
 
-  }
-
-  fillCarsInfoByDate(){
+fillCarsInfoByDate(){
 
 
     console.log(this.startDate, this.endDate)
@@ -72,7 +93,7 @@ export class HistoryComponent implements OnInit{
     this.endDateFormatted = this.datePipe.transform(this.endDate, 'MM/dd/yyyy');
     console.log(this.startDateFormatted, this.endDateFormatted )
 
-    this.datePickerService.getCarListData(this.startDateFormatted, this.endDateFormatted).subscribe({
+    this.datePickerService.getCarListData(this.startDateFormatted, this.endDateFormatted, this.currentPage, this.pagesize).subscribe({
       next: (data : any[]) =>{
         this.carsData = data;
         console.log('cars data by date:', this.carsData)
@@ -81,25 +102,55 @@ export class HistoryComponent implements OnInit{
         console.error('Error loading cars data by dates:', error)
       }
     })
-  }
+}
 
-  fillCarsInfo(){
-    this.fuelService.getCarListData()
+
+fillCarsInfo(){
+  this.fuelService.getCarListData(this.pageindex, this.pagesize)
       .subscribe({
       next: (data: any[]) =>{
         this.carsData = data;
         console.log('cars data :', this.carsData)
+        if (data && data.length > 0) {
+          this.totalItems = data.length;
+          this.totalPages = Math.ceil((this.totalData / this.pagesize));
+      }
+      console.log('total pages', this.totalPages)
+       
       },
-        error: (error) => {
+      error: (error) => {
           console.error('Error loading cars data:', error)
-        }
+      }
+   
 
+  })
+}
 
-    })
-  }
-
-  fillCarsInfoById(){
-    this.fuelService.getCarDataById(this.chosenId).subscribe({
+getAllCount(){
+  this.fuelService.getCount().subscribe({
+    next: (data: number) => {
+      this.totalData = data;
+      console.log('all data', this.totalData)
+    },
+    error: (error) => {
+      console.error('Error loading cars data by id:', error)
+    }
+  })
+}
+getCountById(){
+  this.fuelService.getCountById(this.chosenId).subscribe({
+    next: (data: number) => {
+      this.totalDatabyId = data;
+      console.log('dat by id', this.totalDatabyId)
+      this.totalIdPages = (this.totalDatabyId / 10)
+    },
+    error: (error) => {
+      console.error('Error loading cars data by id:', error)
+    }
+  })
+}
+fillCarsInfoById(){
+    this.fuelService.getCarDataById(this.chosenId, this.currentPage).subscribe({
       next: (response: any[]) =>{
         this.carsDataById = response;
         console.log('by id response:', response);
@@ -109,27 +160,53 @@ export class HistoryComponent implements OnInit{
           return timeB - timeA;
         });
 
-        this.calculateTotalAmounts(this.carsDataById);
       },
       error: (error) => {
         console.error('Error loading cars data by id:', error)
       }
     });
-  }
+}
 
-  calculateTotalAmounts(data: any[]): void {
-    this.carsDataById.forEach((item) => {
-      const carNumber = item.carNumber;
-      const sumOfLiters = data.reduce((total, dataId) => total + dataId.liters, 0);
-
-      this.sum = sumOfLiters;
-
-      console.log('I log sum of liters:',sumOfLiters);
-      this.totalAmounts[carNumber] = sumOfLiters;
-    });
-  }
-
-  filterTxt:any = '';
+previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fillCarsInfoById();
+    }
+}
+  
+nextPage() {
+    if (this.currentPage < this.totalIdPages) {
+      this.currentPage++;
+      this.fillCarsInfoById();
+    }
+}
+  
+previousMainPage() {
+    if (this.pageindex > 1) {
+      this.pageindex--;
+      this.fillCarsInfo();
+    }
+}
+  
+nextMainPage() {
+    if (this.pageindex < this.totalPages  ) {
+      this.pageindex++;
+      this.fillCarsInfo();
+    }
 
 }
+
+filterTxt:any = '';
+
+}
+ 
+
+
+
+
+
+
+
+
+
 

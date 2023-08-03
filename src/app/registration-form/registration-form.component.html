@@ -6,7 +6,7 @@
 
 
 <div class="container-fluid">
-<form [formGroup] = "regForm">
+<form [formGroup] ="regForm" (ngSubmit)="register()" >
    <div class="regform">
     <h1>Registration Form</h1>
        <div class="form-floating mb-3 mt-3 emailinp">
@@ -34,9 +34,9 @@
      </div>
        <div class="rolediv">
 
-      <select formControlName="role" ng-model="myInput" class="form-control roleformcontrol" (change)="changeRole($event)" required>
-
-      <option *ngFor="let role of rolesList">{{role}}</option>
+      <select formControlName="role" [(ngModel)]="regForm.value.role" ng-model="myInput" class="form-control roleformcontrol"  (change)="changeRole($event)" required >
+        <option value="" disabled selected>Select the role:</option>
+      <option *ngFor="let role of rolesList" [value]="role.role">{{role.role}}</option>
       </select>
        <div *ngIf="regForm.controls['role'].invalid &&  (submitted || regForm.controls['role'].touched) " class="alert">
           Please choose your role
@@ -44,7 +44,7 @@
        </div>
 
 
-       <button type="submit" id="liveToastBtn" class="btn btn-success regbtn" (click)="register()">Registrate</button>
+       <button type="submit" id="liveToastBtn" class="btn btn-success regbtn" >Registrate</button>
 
 
     </div>

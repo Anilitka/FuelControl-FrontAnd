@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input  } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {TokenService} from "../services/token.service";
 import {NotificationService} from "../services/notification.service";
+
 
 @Component({
   selector: 'app-notification-modal',
@@ -9,11 +10,13 @@ import {NotificationService} from "../services/notification.service";
   styleUrls: ['./notification-modal.component.css']
 })
 export class NotificationModalComponent {
-  @Input() data: any[]; // Rename the property to "data"
+  @Input() data: any[] = []; // Rename the property to "data"
 
-  constructor(private tokenService: TokenService, private http: HttpClient, private notifService: NotificationService) {
+
+  constructor(private tokenService: TokenService, private http: HttpClient)
+  {
+
   }
-
 
   approveUser(user: any) {
     // Implement the logic to handle user approval here
@@ -25,20 +28,29 @@ export class NotificationModalComponent {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     // Prepare the body for the PATCH request
-    const body = { status: true }; // Replace with your desired boolean value or variable
+    const body = { 
+      id : user.id,
+      status: true }; // Replace with your desired boolean value or variable
+
+      console.log(body.status);
 
     // Make the PATCH request
-    this.http.patch('https://wialonfuelhistorybe.mygps.ge:4436/api/Manager/UpdateByStatus?id=' + user.id , body, { headers })
+    this.http.patch(`https://localhost:5001/api/Manager/UpdateByStatus?id=${user.id}`+'&status=true', body, { headers })
       .subscribe({
         next: (response: any) => {
           console.log('User approval successful:', response);
-          // Handle the response or perform any other necessary actions
+
+          // Remove the approved user from the data array
+          this.data = this.data.filter(u => u.id !== user.id);
+
         },
         error: (error) => {
           console.log('Error approving user:', error);
           // Handle the error or display an error message
         }
       });
+
+
 
   }
 
@@ -52,14 +64,23 @@ export class NotificationModalComponent {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.token}`);
 
     // Prepare the body for the PATCH request
-    const body = { status: false }; // Replace with your desired boolean value or variable
+    const body = { 
+      id : user.id,
+      status: false }; // Replace with your desired boolean value or variable
 
     // Make the PATCH request
-    this.http.patch('https://wialonfuelhistorybe.mygps.ge:4436/api/Manager/UpdateByStatus?id=' + user.id, body, { headers })
+    this.http.patch(`https://localhost:5001/api/Manager/UpdateByStatus?id=${user.id}`+'&status=false', body, { headers })
+    
       .subscribe({
+        
         next: (response: any) => {
           console.log('User declining successful:', response);
           // Handle the response or perform any other necessary actions
+          
+          // Remove the declined user from the data array
+          this.data = this.data.filter(u => u.id !== user.id);
+
+
         },
         error: (error) => {
           console.log('Error declining user:', error);
@@ -67,4 +88,7 @@ export class NotificationModalComponent {
         }
       });
   }
+
+
+
 }
