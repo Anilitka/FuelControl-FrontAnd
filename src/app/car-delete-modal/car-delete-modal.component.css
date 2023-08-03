@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    width: 300px;
+}
+.header{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+.carContent ul li {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}

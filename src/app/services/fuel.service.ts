@@ -46,4 +46,9 @@ getCountById(Id:string){
   return this.http.get<number>(`https://localhost:5001/api/WialonFuelHistory/GetAllCount?cardId=${Id}`, {headers})
 }
 
+getAllCars(): Observable<any>{
+  const headers = this.getHeaders();
+  return this.http.get('https://localhost:5001/api/UserCar/GetAllCars', {headers})
+}
+
 }
