@@ -69,7 +69,7 @@ ureg(){
         id: selectedRole.id, 
       };
 
-      this.http.post<any>('https://localhost:5001/api/Authorization/UserRegistration', regData).subscribe({
+this.http.post<any>('https://wialonfuelhistorybe.mygps.ge:4436/api/Authorization/UserRegistration', regData).subscribe({
         next: (response) => {
           console.log('I am logging reg response: ', response);
           this.regForm.reset(); 
@@ -78,7 +78,7 @@ ureg(){
           console.log('Error logging in:', error);
         }
       });
-    }
+   }
 
     this._modal.dismissAll();
     Swal.fire({ title: 'Your registration information is sent successfully', confirmButtonColor: 'rgb(38, 122, 38)' });

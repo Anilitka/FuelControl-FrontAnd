@@ -1,7 +1,6 @@
 import { Component, Input  } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {TokenService} from "../services/token.service";
-import {NotificationService} from "../services/notification.service";
 
 
 @Component({
@@ -35,7 +34,7 @@ export class NotificationModalComponent {
       console.log(body.status);
 
     // Make the PATCH request
-    this.http.patch(`https://localhost:5001/api/Manager/UpdateByStatus?id=${user.id}`+'&status=true', body, { headers })
+    this.http.patch(`https://wialonfuelhistorybe.mygps.ge:4436/api/Manager/UpdateByStatus?id=${user.id}`+'&status=true', body, { headers })
       .subscribe({
         next: (response: any) => {
           console.log('User approval successful:', response);
@@ -49,8 +48,6 @@ export class NotificationModalComponent {
           // Handle the error or display an error message
         }
       });
-
-
 
   }
 
@@ -69,7 +66,7 @@ export class NotificationModalComponent {
       status: false }; // Replace with your desired boolean value or variable
 
     // Make the PATCH request
-    this.http.patch(`https://localhost:5001/api/Manager/UpdateByStatus?id=${user.id}`+'&status=false', body, { headers })
+    this.http.patch(`https://wialonfuelhistorybe.mygps.ge:4436/api/Manager/UpdateByStatus?id=${user.id}`+'&status=false', body, { headers })
     
       .subscribe({
         
