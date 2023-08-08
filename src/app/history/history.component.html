@@ -2,7 +2,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <app-nav-bar></app-nav-bar>
-<div class="history-content">
+
+<div class="maincontainer">
+  <div class="tablediv">
+    <div class="history-content">
   <div class="search-container">
     <div class="form-inline mt-2 formControlDiv">
       <input [(ngModel)]="filterTxt" class="form-control mr-2" #search style="width: 300px" placeholder="Search" type="text">
@@ -69,9 +72,17 @@
       
     </table>
   </div>
-  <div class="pagination2" style="margin-top: 15px;">
+  </div>
+</div>
+  <div class="pagdiv">
+     <div class="pagination2" style="margin-top: 15px;">
     <div class ="page_info">
     <button class="btn btn-primary leftBtn"  (click)="previousMainPage()"><i class="fa-solid fa-chevron-left"></i></button>
     <button class="btn btn-primary rightBtn" (click)="nextMainPage()" ><i class="fa-solid fa-chevron-right"></i></button>
   </div>
+</div> 
+  </div>
 </div>
+
+
+

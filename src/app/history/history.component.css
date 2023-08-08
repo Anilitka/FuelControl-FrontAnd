@@ -68,3 +68,14 @@ td[colspan="2"] table {
 td[colspan="2"] table tr {
   transition: all 300ms ease-in-out;
 }
+
+.maincontainer{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 100vh;
+}
+.pagdiv{
+  margin-left: 250px;
+  margin-bottom: 10px;
+}
