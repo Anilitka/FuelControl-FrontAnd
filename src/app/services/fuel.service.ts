@@ -21,34 +21,34 @@ export class FuelService {
 
 getCarListData(pageindex: number, pagesize: number) {
     const headers = this.getHeaders();
-    return this.http.get(`https://wialonfuelhistorybe.mygps.ge:4436/api/WialonFuelHistory/GetAllFuelHistory?pageindex=${pageindex}&pagesize=${pagesize}` , { headers });
+    return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/WialonFuelHistory/GetAllFuelHistory?pageindex=${pageindex}&pagesize=${pagesize}` , { headers });
 }
 
 getCarDataById(Id: string, page: number){
     const headers = this.getHeaders();
-   return this.http.get(`https://wialonfuelhistorybe.mygps.ge:4436/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}`, { headers });
+   return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}`, { headers });
 }
 
 
 getRole(){
     const headers = this.getHeaders();
-    return this.http.get('https://wialonfuelhistorybe.mygps.ge:4436/api/Roles/GetAllRoles', {headers})
+    return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/Roles/GetAllRoles', {headers})
 }
 
 
 getCount(): Observable<number>{
   const headers = this.getHeaders();
-  return this.http.get<number>('https://wialonfuelhistorybe.mygps.ge:4436/api/WialonFuelHistory/GetAllCount', {headers})
+  return this.http.get<number>('https://mygpsadminbe.mygps.ge:4436/api/WialonFuelHistory/GetAllCount', {headers})
 }
 
 getCountById(Id:string){
   const headers = this.getHeaders();
-  return this.http.get<number>(`https://wialonfuelhistorybe.mygps.ge:4436/api/WialonFuelHistory/GetAllCount?cardId=${Id}`, {headers})
+  return this.http.get<number>(`https://mygpsadminbe.mygps.ge:4436/api/WialonFuelHistory/GetAllCount?cardId=${Id}`, {headers})
 }
 
 getAllCars(): Observable<any>{
   const headers = this.getHeaders();
-  return this.http.get('https://wialonfuelhistorybe.mygps.ge:4436/api/UserCar/GetAllCars', {headers})
+  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/UserCar/GetAllCars', {headers})
 }
 
 }
