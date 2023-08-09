@@ -7,6 +7,7 @@ import {TokenService} from "../services/token.service";
 import {UserService} from "../services/user.service";
 import { CarRegModalComponent } from '../car-reg-modal/car-reg-modal.component';
 import { CarDeleteModalComponent } from '../car-delete-modal/car-delete-modal.component';
+import { CompanyRegistrationComponent } from '../company-registration/company-registration.component';
 
 
 @Component({
@@ -61,11 +62,11 @@ export class NavBarComponent implements OnInit{
   openDeleteModal(){
     this._modal.open(CarDeleteModalComponent)
   }
+  openCompanyRegistration(){
+    this._modal.open(CompanyRegistrationComponent)
+  }
   openNotification() {
     this.notificationService.openNotificationModal();
   }
-
-
-
 
 }

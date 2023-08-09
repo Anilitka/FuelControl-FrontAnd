@@ -23,6 +23,7 @@ import {defineLocale, enGbLocale} from "ngx-bootstrap/chronos";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 import { CarRegModalComponent } from './car-reg-modal/car-reg-modal.component';
 import { CarDeleteModalComponent } from './car-delete-modal/car-delete-modal.component';
+import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 
 
 export function tokenGetter() {
@@ -44,6 +45,7 @@ defineLocale('enGb', enGbLocale);
     NotificationModalComponent,
     CarRegModalComponent,
     CarDeleteModalComponent,
+    CompanyRegistrationComponent,
 
   ],
   imports: [

@@ -44,3 +44,16 @@ form{
     color: rgb(205, 7, 7);
     font-weight: bold;
 }
+
+.selectCompany {
+    margin-top: 15px;
+  }
+  
+  .selectCompany select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  

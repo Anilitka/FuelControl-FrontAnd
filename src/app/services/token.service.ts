@@ -20,6 +20,9 @@ export class TokenService {
   }
 
   getUserRole(): string {
-    return this.payload.role;
+    if (this.payload) {
+      return this.payload.role || '';
+    }
+    return '';
   }
 }

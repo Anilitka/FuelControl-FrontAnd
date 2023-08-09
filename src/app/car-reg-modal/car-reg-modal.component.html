@@ -26,6 +26,13 @@
             Please enter tech passport Id
         </div>
       </div>
+       <div class="selectCompany">
+        <select name="company" id="company" class="form-control" formControlName="company" required>
+          <option value="" disabled selected>Select a Company</option>
+          <option *ngFor="let company of companies" [value]="company.companyName">{{company.companyName}}</option>
+        </select>
+        <div class="alert"  *ngIf="carRegForm.controls['company'].invalid &&  (submitted || carRegForm.controls['company'].touched) " >Please select a company</div>
+      </div> 
       <button type="submit" class="btn btn-success regbtn">Registrate</button>
   </div>    
 </div>
