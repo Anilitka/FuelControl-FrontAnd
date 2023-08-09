@@ -47,13 +47,13 @@ form{
 
 .selectCompany {
     margin-top: 15px;
-  }
-  
-  .selectCompany select {
+}
+
+.selectCompany select {
     width: 100%;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
+}
   
   
