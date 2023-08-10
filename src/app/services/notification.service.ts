@@ -12,7 +12,7 @@ export class NotificationService {
   constructor(private http: HttpClient, private modalService: NgbModal, private tokenService: TokenService) {}
 
 openNotificationModal() {
-    const token = this.tokenService.token;
+  const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const timestamp = new Date().getTime();
     const url = `https://localhost:5001/api/Manager/GetFilteredUsers?timestamp=${timestamp}`;

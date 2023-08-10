@@ -49,7 +49,7 @@ fillAllCars(){
 
 deleteCarById(id: string){
 
-  const token = this.tokenService.token;
+  const token = this.tokenService.getToken();
   
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   id = this.chosenId
@@ -81,4 +81,6 @@ deleteById(){
 
   this.chosenId = null;
 }
+
+
 }

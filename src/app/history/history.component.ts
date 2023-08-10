@@ -7,6 +7,7 @@ import {CommonModule, DatePipe} from "@angular/common";
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import {FuelService} from "../services/fuel.service";
 import {DatePickerService} from "../services/date-picker.service";
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-history',
@@ -29,6 +30,7 @@ export class HistoryComponent implements OnInit{
     private fuelService: FuelService,
     private datePickerService: DatePickerService,
     private datePipe: DatePipe,
+    private tokenService: TokenService
   ) {}
 
   carsData: any[] = [];
@@ -83,6 +85,7 @@ ngOnInit(): void {
     this.fillCarsInfo();
     console.log('I am logging car list data:',this.carsData);
     this.getAllCount();
+    this.retrieveUserInformation()
 }
 
 fillCarsInfoByDate(){
@@ -198,6 +201,16 @@ nextMainPage() {
 
 filterTxt:any = '';
 
+retrieveUserInformation(): void {
+  const userRole = sessionStorage.getItem('userRole');
+  const userName = sessionStorage.getItem('userName');
+  console.log('Retrieved user role:', userRole);
+  console.log('Retrieved user name:', userName);
+
+  // Pass the user information to the TokenService or other services/components
+  this.tokenService.setUserInformation(userRole, userName);
+  console.log()
+}
 }
  
 

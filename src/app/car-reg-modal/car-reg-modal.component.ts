@@ -62,9 +62,9 @@ carReg(){
     
     };
     console.log(carRegData)
-    const token = this.tokenService.token;
+    const token = this.tokenService.getToken();
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
 
     this.http.post('https://localhost:5001/api/UserCar/AddNewCar', carRegData, { headers } ).subscribe({
       next: (response) => {

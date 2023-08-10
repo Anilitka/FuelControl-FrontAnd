@@ -13,7 +13,7 @@ export class FuelService {
 ) { }
 
  private getHeaders(): HttpHeaders {
-    const token = this.tokenService.token;
+  const token = this.tokenService.getToken();;
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
 }
 

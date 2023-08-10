@@ -33,6 +33,7 @@ export class LoginFormComponent {
     })
   }
 
+
   logIn(){
     this.submitted = true;
 
@@ -63,6 +64,10 @@ export class LoginFormComponent {
 
           this.tokenService.setToken(this.token);
 
+          sessionStorage.setItem('userRole', this.tokenService.getUserRole());
+          sessionStorage.setItem('userName', loginData.userName);
+
+          this.tokenService.setUserInformation(this.tokenService.getUserRole(), loginData.userName);
 
           this.loginForm.reset();
 
@@ -82,4 +87,5 @@ export class LoginFormComponent {
   goToregistration(){
     this.router.navigate(['registration'])
   }
+
 }

@@ -77,6 +77,9 @@ register(){
         next: (response) => {
           console.log('I am logging reg response: ', response);
           this.regForm.reset(); 
+
+          sessionStorage.setItem('userRole', selectedRole.role);
+          sessionStorage.setItem('userName', regData.userName);
         },
         error: (error) => {
           console.log('Error logging in:', error);

@@ -22,7 +22,7 @@ export class NotificationModalComponent {
     console.log('Approved user:', user);
 
 
-    const token = this.tokenService.token;
+    const token = this.tokenService.getToken();
     // Prepare the authorization header
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
@@ -58,7 +58,7 @@ export class NotificationModalComponent {
 
 
     // Prepare the authorization header
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
 
     // Prepare the body for the PATCH request
     const body = { 

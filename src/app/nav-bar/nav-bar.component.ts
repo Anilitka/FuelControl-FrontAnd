@@ -29,7 +29,8 @@ export class NavBarComponent implements OnInit{
       this.userName = username;
       console.log('Username:', this.userName);
     });
-
+    this.userName = this.tokenService.getUserName();
+    console.log('Username:', this.userName);
 
   }
 

@@ -5,24 +5,40 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class TokenService {
-  public token: string;
+  private token: string;
   private payload: any;
+  private userRole: string;
+  private userName: string;
 
-  constructor(private jwtHelper: JwtHelperService) { }
+  constructor(private jwtHelper: JwtHelperService) {
+    this.token = localStorage.getItem('token');
+    this.extractPayloadFromToken();
+  }
 
   setToken(token: string) {
     this.token = token;
+    sessionStorage.setItem('token', token);
     this.extractPayloadFromToken();
   }
 
   private extractPayloadFromToken() {
+    const token = sessionStorage.getItem('token');
     this.payload = this.jwtHelper.decodeToken(this.token);
+  }
+  setUserInformation(userRole: string, userName: string) {
+    this.userRole = userRole;
+    this.userName = userName;
   }
 
   getUserRole(): string {
-    if (this.payload) {
-      return this.payload.role || '';
-    }
-    return '';
+
+      return this.payload.role;
+
+  }
+  getUserName(): string {
+    return sessionStorage.getItem('userName') || '';
+  }
+  getToken(): string {
+    return this.token;
   }
 }
