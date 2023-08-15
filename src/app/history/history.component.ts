@@ -56,6 +56,9 @@ export class HistoryComponent implements OnInit{
   idpagesize: number = 10;
   totalIdPages: number;
   previousCardID: string = '';
+  encodedStartDate;
+  encodedEndDate;
+
 
   // formatDateTime(dateTime: string): string {
   //   const date = new Date(dateTime);
@@ -94,9 +97,11 @@ fillCarsInfoByDate(){
     console.log(this.startDate, this.endDate)
     this.startDateFormatted = this.datePipe.transform(this.startDate, 'MM/dd/yyyy');
     this.endDateFormatted = this.datePipe.transform(this.endDate, 'MM/dd/yyyy');
-    console.log(this.startDateFormatted, this.endDateFormatted )
+    this.encodedStartDate = encodeURIComponent(this.startDateFormatted);
+    this.encodedEndDate = encodeURIComponent(this.endDateFormatted);
+    console.log(this.startDateFormatted, this.endDateFormatted, this.encodedStartDate, this.encodedEndDate  )
 
-    this.datePickerService.getCarListData(this.startDateFormatted, this.endDateFormatted, this.currentPage, this.pagesize).subscribe({
+    this.datePickerService.getCarListData(this.encodedStartDate, this.encodedEndDate, this.currentPage, this.pagesize).subscribe({
       next: (data : any[]) =>{
         this.carsData = data;
         console.log('cars data by date:', this.carsData)
@@ -169,6 +174,7 @@ fillCarsInfoById(){
       }
     });
 }
+
 
 previousPage() {
     if (this.currentPage > 1) {
