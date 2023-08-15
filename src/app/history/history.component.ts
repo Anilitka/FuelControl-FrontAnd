@@ -157,23 +157,59 @@ getCountById(){
     }
   })
 }
-fillCarsInfoById(){
-    this.fuelService.getCarDataById(this.chosenId, this.currentPage).subscribe({
-      next: (response: any[]) =>{
-        this.carsDataById = response;
-        console.log('by id response:', response);
-        this.carsDataById.sort((a, b) => {
-          const timeA = new Date(a.timeInserted).getTime();
-          const timeB = new Date(b.timeInserted).getTime();
-          return timeB - timeA;
-        });
+// fillCarsInfoById(){
+//     this.fuelService.getCarDataById(this.chosenId, this.currentPage).subscribe({
+//       next: (response: any[]) =>{
+//         this.carsDataById = response;
+//         console.log('by id response:', response);
+//         this.carsDataById.sort((a, b) => {
+//           const timeA = new Date(a.timeInserted).getTime();
+//           const timeB = new Date(b.timeInserted).getTime();
+//           return timeB - timeA;
+//         });
 
-      },
-      error: (error) => {
-        console.error('Error loading cars data by id:', error)
-      }
-    });
+//       },
+//       error: (error) => {
+//         console.error('Error loading cars data by id:', error)
+//       }
+//     });
+// }
+fillCarsInfoById() {
+  if (this.chosenId) {
+    if (this.startDateFormatted && this.endDateFormatted) {
+      this.fuelService.getCarDataById(this.chosenId, this.currentPage, this.encodedStartDate, this.encodedEndDate).subscribe({
+        next: (response: any[]) => {
+          this.carsDataById = response;
+          console.log('by id response:', response);
+          this.carsDataById.sort((a, b) => {
+            const timeA = new Date(a.timeInserted).getTime();
+            const timeB = new Date(b.timeInserted).getTime();
+            return timeB - timeA;
+          });
+        },
+        error: (error) => {
+          console.error('Error loading cars data by id:', error);
+        }
+      });
+    } else {
+      this.fuelService.getCarDataById(this.chosenId, this.currentPage).subscribe({
+        next: (response: any[]) => {
+          this.carsDataById = response;
+          console.log('by id response:', response);
+          this.carsDataById.sort((a, b) => {
+            const timeA = new Date(a.timeInserted).getTime();
+            const timeB = new Date(b.timeInserted).getTime();
+            return timeB - timeA;
+          });
+        },
+        error: (error) => {
+          console.error('Error loading cars data by id:', error);
+        }
+      });
+    }
+  }
 }
+
 
 
 previousPage() {

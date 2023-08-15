@@ -24,9 +24,19 @@ getCarListData(pageindex: number, pagesize: number) {
     return this.http.get(`https://localhost:5001/api/WialonFuelHistory/GetAllFuelHistory?pageindex=${pageindex}&pagesize=${pagesize}` , { headers });
 }
 
-getCarDataById(Id: string, page: number){
-    const headers = this.getHeaders();
-   return this.http.get(`https://localhost:5001/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}`, { headers });
+// getCarDataById(Id: string, page: number){
+//     const headers = this.getHeaders();
+//    return this.http.get(`https://localhost:5001/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}`, { headers });
+// }
+getCarDataById(Id: string, page: number, startDate?: string, endDate?: string) {
+  const headers = this.getHeaders();
+  let url = `https://localhost:5001/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}`;
+  
+  if (startDate && endDate) {
+    url += `&startDate=${startDate}&endDate=${endDate}`;
+  }
+
+  return this.http.get(url, { headers });
 }
 
 
