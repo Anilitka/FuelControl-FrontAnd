@@ -24,17 +24,10 @@ getCarListData(pageindex: number, pagesize: number) {
     return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/WialonFuelHistory/GetAllFuelHistory?pageindex=${pageindex}&pagesize=${pagesize}` , { headers });
 }
 
-// getCarDataById(Id: string, page: number){
-//     const headers = this.getHeaders();
-//    return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}&startDate`, { headers });
-// }
-getCarDataById(Id: string, page: number, startDate?: string, endDate?: string) {
-  const headers = this.getHeaders();
-  let url = `https://mygpsadminbe.mygps.ge:4436/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}`;
-
-  if (startDate != null && endDate != null) {
-    url += `&startDate=${startDate}&endDate=${endDate}`;
-  }
+getCarDataById(Id: string, page: number){
+    const headers = this.getHeaders();
+   return this.http.get(`https://localhost:5001/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}`, { headers });
+}
 
   return this.http.get(url, { headers });
 }

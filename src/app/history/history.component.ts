@@ -173,14 +173,18 @@ getCountById(){
     }
   })
 }
+
 fillCarsInfoById() {
   if (this.chosenId) {
-    if (this.startDateFormatted && this.endDateFormatted) {
+    if (this.startDateFormatted != null && this.endDateFormatted != null) {
       this.fuelService.getCarDataById(this.chosenId, this.currentPage, this.encodedStartDate, this.encodedEndDate).subscribe({
         next: (response: any[]) => {
           this.carsDataById = response;
+
           const litersById = this.carsDataById.map(l => l.liters)
-          console.log('by id response:', response, litersById);
+
+          console.log('by id response:', response);
+
           this.carsDataById.sort((a, b) => {
             const timeA = new Date(a.timeInserted).getTime();
             const timeB = new Date(b.timeInserted).getTime();
@@ -209,6 +213,7 @@ fillCarsInfoById() {
     }
   }
 }
+
 
 
 previousPage() {
