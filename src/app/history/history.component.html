@@ -14,7 +14,9 @@
         <input type="text" class="form-control" placeholder="MM/DD/YY" bsDatepicker [(bsValue)]="startDate">
         <label class="dateLabel">to:</label>
         <input type="text" class="form-control" placeholder="MM/DD/YY" bsDatepicker [(bsValue)]="endDate">
-        <button class="btn btn-success" (click)="fillCarsInfoByDate()">Filter</button>
+
+        <button  class="btn btn-success" (click)=" fillCarsInfoByDate();">Filter</button>
+
       </div>
     </div>
   </div>
@@ -29,8 +31,8 @@
       </tr>
       </thead>
       <tbody>
-      <ng-container *ngFor="let data of carsData | search: filterTxt">
-        <tr (click)=" returnCardID(data.cardID); fillCarsInfoById(); getCountById()" style="cursor: pointer;">
+      <ng-container *ngFor="let data of carsData | search: filterTxt" >
+        <tr (click)=" returnCardID(data.cardID); getCountById(); fillCarsInfoById();" style="cursor: pointer;">
           <td>{{ data.cardID }}</td>
           <td>{{ data.carNumber }}</td>
 

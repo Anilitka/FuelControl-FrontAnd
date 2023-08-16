@@ -58,14 +58,8 @@ export class HistoryComponent implements OnInit{
   previousCardID: string = '';
   encodedStartDate;
   encodedEndDate;
+  allLiters: any[] = []
 
-
-  // formatDateTime(dateTime: string): string {
-  //   const date = new Date(dateTime);
-  //   const formattedDate = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
-  //   const formattedTime = `${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}`;
-  //   return `${formattedDate} ${formattedTime}`;
-  // }
 
 
 
@@ -88,7 +82,9 @@ ngOnInit(): void {
     this.fillCarsInfo();
     console.log('I am logging car list data:',this.carsData);
     this.getAllCount();
-    this.retrieveUserInformation()
+    this.retrieveUserInformation();
+
+
 }
 
 fillCarsInfoByDate(){
@@ -104,14 +100,34 @@ fillCarsInfoByDate(){
     this.datePickerService.getCarListData(this.encodedStartDate, this.encodedEndDate, this.currentPage, this.pagesize).subscribe({
       next: (data : any[]) =>{
         this.carsData = data;
-        console.log('cars data by date:', this.carsData)
+        const liters = this.carsData.map(l => l.liters)
+        console.log('cars data by date:', this.carsData, liters)
       },
       error: (error: any) =>{
         console.error('Error loading cars data by dates:', error)
       }
     })
+    
 }
 
+// fillLiitersSum(){
+//   this.fuelService.getAllLitersById(this.chosenId)
+//   .subscribe({
+//     next: (data: any[]) =>{
+      
+//       this.allLiters = data;
+       
+//       console.log('liters data :', this.allLiters)
+//       const cardIds = this.allLiters.map(item => item.cardId);
+//       console.log('card ids:', cardIds);
+      
+     
+//     },
+//     error: (error) => {
+//         console.error('Error loading cars data:', error)
+//     }
+//   })
+// }
 
 fillCarsInfo(){
   this.fuelService.getCarListData(this.pageindex, this.pagesize)
@@ -157,22 +173,41 @@ getCountById(){
     }
   })
 }
-fillCarsInfoById(){
-    this.fuelService.getCarDataById(this.chosenId, this.currentPage).subscribe({
-      next: (response: any[]) =>{
-        this.carsDataById = response;
-        console.log('by id response:', response);
-        this.carsDataById.sort((a, b) => {
-          const timeA = new Date(a.timeInserted).getTime();
-          const timeB = new Date(b.timeInserted).getTime();
-          return timeB - timeA;
-        });
-
-      },
-      error: (error) => {
-        console.error('Error loading cars data by id:', error)
-      }
-    });
+fillCarsInfoById() {
+  if (this.chosenId) {
+    if (this.startDateFormatted && this.endDateFormatted) {
+      this.fuelService.getCarDataById(this.chosenId, this.currentPage, this.encodedStartDate, this.encodedEndDate).subscribe({
+        next: (response: any[]) => {
+          this.carsDataById = response;
+          const litersById = this.carsDataById.map(l => l.liters)
+          console.log('by id response:', response, litersById);
+          this.carsDataById.sort((a, b) => {
+            const timeA = new Date(a.timeInserted).getTime();
+            const timeB = new Date(b.timeInserted).getTime();
+            return timeB - timeA;
+          });
+        },
+        error: (error) => {
+          console.error('Error loading cars data by id:', error);
+        }
+      });
+    } else {
+      this.fuelService.getCarDataById(this.chosenId, this.currentPage).subscribe({
+        next: (response: any[]) => {
+          this.carsDataById = response;
+          console.log('by id response:', response);
+          this.carsDataById.sort((a, b) => {
+            const timeA = new Date(a.timeInserted).getTime();
+            const timeB = new Date(b.timeInserted).getTime();
+            return timeB - timeA;
+          });
+        },
+        error: (error) => {
+          console.error('Error loading cars data by id:', error);
+        }
+      });
+    }
+  }
 }
 
 
