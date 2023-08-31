@@ -73,7 +73,18 @@ carReg(){
       },
       error: (error) => {
         console.log('Error car reg :', error);
-      }
+        this._modal.dismissAll();
+      
+        if (error.status === 400) {
+          Swal.fire({
+            title: 'Bad Request',
+            text: 'The server received a bad request. Please check your input and try again.',
+            icon: 'error',
+            confirmButtonColor: 'rgb(255, 0, 0)',
+          });
+        } 
+      },
+      
     })
   
 
@@ -83,3 +94,5 @@ carReg(){
 
 }
 }
+
+
