@@ -77,8 +77,7 @@ carReg(){
       
         if (error.status === 400) {
           Swal.fire({
-            title: 'Bad Request',
-            text: 'The server received a bad request. Please check your input and try again.',
+            title: 'This car is already registered.',
             icon: 'error',
             confirmButtonColor: 'rgb(255, 0, 0)',
           });
