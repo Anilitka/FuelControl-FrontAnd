@@ -8,6 +8,15 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import {FuelService} from "../services/fuel.service";
 import {DatePickerService} from "../services/date-picker.service";
 import { TokenService } from '../services/token.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NotificationService } from '../services/notification.service';
+import { UserService } from '../services/user.service';
+import { ModalComponent } from '../modal/modal.component';
+import { CarRegModalComponent } from '../car-reg-modal/car-reg-modal.component';
+import { CarDeleteModalComponent } from '../car-delete-modal/car-delete-modal.component';
+import { CompanyRegistrationComponent } from '../company-registration/company-registration.component';
+import { CompanyDeleteModalComponent } from '../company-delete-modal/company-delete-modal.component';
 
 @Component({
   selector: 'app-history',
@@ -25,12 +34,19 @@ export class HistoryComponent implements OnInit{
 
   dummyData: DummyData[] = [];
   totalAmounts: { [carNumber: string]: number } = {};
+  isAdmin: boolean;
+  userName: string;
+  isSidebarOpen = false;
   constructor(
     private http: HttpClient,
     private fuelService: FuelService,
     private datePickerService: DatePickerService,
     private datePipe: DatePipe,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private _modal: NgbModal,
+    private router: Router,
+    private notificationService: NotificationService,
+    private userService: UserService
   ) {}
 
   carsData: any[] = [];
@@ -78,7 +94,16 @@ returnCardID(cardID: string): void {
 }
 
 ngOnInit(): void {
+  this.checkAdmin();
 
+  this.userService.getUsername().subscribe(username => {
+    this.userName = username;
+    console.log('Username:', this.userName);
+  });
+  this.userName = this.tokenService.getUserName();
+  console.log('Username:', this.userName);
+
+  this.getUserRole();
     this.fillCarsInfo();
     console.log('I am logging car list data:',this.carsData);
     this.getAllCount();
@@ -109,25 +134,6 @@ fillCarsInfoByDate(){
     })
     
 }
-
-// fillLiitersSum(){
-//   this.fuelService.getAllLitersById(this.chosenId)
-//   .subscribe({
-//     next: (data: any[]) =>{
-      
-//       this.allLiters = data;
-       
-//       console.log('liters data :', this.allLiters)
-//       const cardIds = this.allLiters.map(item => item.cardId);
-//       console.log('card ids:', cardIds);
-      
-     
-//     },
-//     error: (error) => {
-//         console.error('Error loading cars data:', error)
-//     }
-//   })
-// }
 
 fillCarsInfo(){
   this.fuelService.getCarListData(this.pageindex, this.pagesize)
@@ -256,6 +262,46 @@ retrieveUserInformation(): void {
   // Pass the user information to the TokenService or other services/components
   this.tokenService.setUserInformation(userRole, userName);
   console.log()
+}
+reloadCurrentPage() {
+  window.location.reload();
+}
+
+checkAdmin(){
+  if(this.tokenService.getUserRole().includes("Manager")){
+    this.isAdmin=true;
+  }
+}
+getUserRole(){
+  console.log('I return roles',this.tokenService.getUserRole());
+  return this.tokenService.getUserRole();
+}
+
+open() {
+  this._modal.open(ModalComponent);
+}
+openModal(){
+  this._modal.open(CarRegModalComponent)
+}
+openDeleteModal(){
+  this._modal.open(CarDeleteModalComponent)
+}
+openCompanyRegistration(){
+  this._modal.open(CompanyRegistrationComponent)
+}
+openCompanyDelete(){
+  this._modal.open(CompanyDeleteModalComponent)
+}
+
+openNotification() {
+  this.notificationService.openNotificationModal();
+}
+
+toggleSidebar() {
+  this.isSidebarOpen = !this.isSidebarOpen;
+}
+goToFuelHome(){
+this.router.navigate(['home'])
 }
 }
  

@@ -43,7 +43,7 @@
           </div>
         </li>
         <hr>
-        <div class="cars"ngIf="company.showCarInfo">
+        <div class="cars" *ngIf="company.showCarInfo">
           <ul>
             <li *ngFor="let car of company.userCarInformationDto">
               <div class="carNumber">
