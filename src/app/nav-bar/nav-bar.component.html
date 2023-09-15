@@ -3,20 +3,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
 
 
-<div class="sidebar">
+
+<button class="btn btn-primary burgerbtn" [ngClass]="{'button-open': isSidebarOpen, '': !isSidebarOpen}" (click)="toggleSidebar()">
+  <ng-container *ngIf="!isSidebarOpen">
+    <i class="fa-solid fa-bars"></i> 
+  </ng-container>
+  <ng-container *ngIf="isSidebarOpen">
+    <i class="fa-solid fa-x"></i> 
+  </ng-container>
+</button> 
+<div class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen, '': !isSidebarOpen}">
+
   <a routerLink="home" class="sidebar-brand">
     <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> -->
-    <span class="fs-4 logo">MYGPS Admin</span>
+    <span class="fs-4 logo" (click)="goToFuelHome()">MYGPS Admin</span>
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
-
-    <li class="nav-item historyBtnItem">
-      <a class="nav-link text-white historybtn" routerLink="/history" aria-current="page" routerLinkActive="active" (click)="reloadCurrentPage()">
-        
-        History
-      </a>
-    </li>
 
 
    <li class="nav-item regitem">
@@ -48,24 +51,6 @@
     </div>
   </li> 
 
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link text-white" routerLink="#" routerLinkActive="active">-->
-<!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>-->
-<!--        Car Number-->
-<!--      </a>-->
-<!--    </li>-->
-<!--    <li>-->
-<!--      <a class="nav-link text-white" routerLink="#" routerLinkActive="active">-->
-<!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>-->
-<!--        Liters-->
-<!--      </a>-->
-<!--    </li>-->
-<!--    <li>-->
-<!--      <a href="#" class="nav-link text-white" >-->
-<!--        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>-->
-<!--        Fill Date/Time-->
-<!--      </a>-->
-<!--    </li>-->
   </ul>
 
   <button *ngIf="isAdmin" class="btn btn-primary mb-3" (click)="openNotification()">User Approval</button>
@@ -84,4 +69,8 @@
       <li><a class="dropdown-item" href="#">Sign out</a></li>
     </ul>
   </div>
-</div>
+</div> 
+
+
+
+

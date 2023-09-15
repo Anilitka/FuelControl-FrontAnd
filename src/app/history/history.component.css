@@ -71,7 +71,8 @@ td[colspan="2"] table tr {
 }
 
 .maincontainer{
-  margin-left: 300px;
+  margin-left: 10px;
+  margin-top: 15px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;

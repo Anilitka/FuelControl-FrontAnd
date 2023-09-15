@@ -1,3 +1,6 @@
+body{
+  background-color: rgba(226, 226, 226, 0.205);
+}
 .sidebar {
   width: 280px;
   height: 100vh;
@@ -95,13 +98,32 @@
   margin-right: 10px;
 }
 
-.historybtn{
-  background-color: #007bff;
-  display: flex;
-  justify-content: center;
-}
 
 .dropdown-menu li{
 margin-left: 12px;
 cursor: pointer;
 }
+
+.sidebar {
+  transform: translate(-100%, 0) scale(0, 1); 
+  transition: transform 0.5s ease-in-out; 
+}
+.sidebar-open {
+  width: 280px;
+  transform: translate(0, 0);
+  transition: all 0.5s ease-in-out; 
+}
+.burgerbtn{
+  position: fixed;
+  top: 1px;
+  left: 1px;
+  transition: all 0.5s ease-in-out; 
+}
+.button-open{
+  transform: translate(285px, 0); 
+  transition: transform 0.5s ease-in-out; 
+}
+
+
+
+

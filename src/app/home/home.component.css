@@ -1,0 +1,30 @@
+
+.container-fluid{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(226, 226, 226, 0.205);
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.col{
+background-color: white;
+text-align: center;
+padding: 20px 20px;
+border: 1px solid rgba(0, 0, 0, 0.068);
+box-shadow: rgba(0, 0, 0, 0.144) 0px 5px 15px;
+border-radius: 12px;
+cursor: pointer;
+}
+.col:hover{
+    box-shadow: #011f3d79 0px 5px 15px;   
+}
+.col img{
+width: 100px;
+margin-bottom: 30px;
+}

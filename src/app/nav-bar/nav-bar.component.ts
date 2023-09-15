@@ -9,6 +9,7 @@ import { CarRegModalComponent } from '../car-reg-modal/car-reg-modal.component';
 import { CarDeleteModalComponent } from '../car-delete-modal/car-delete-modal.component';
 import { CompanyRegistrationComponent } from '../company-registration/company-registration.component';
 import { CompanyDeleteModalComponent } from '../company-delete-modal/company-delete-modal.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class NavBarComponent implements OnInit{
 
   isAdmin: boolean;
   userName: string;
+  isSidebarOpen = false;
 
   ngOnInit(): void {
       this.checkAdmin();
@@ -37,6 +39,7 @@ export class NavBarComponent implements OnInit{
 
   constructor(
     private _modal: NgbModal,
+    private router: Router,
     private notificationService: NotificationService,
     private tokenService: TokenService,
     private userService: UserService
@@ -78,4 +81,10 @@ export class NavBarComponent implements OnInit{
     this.notificationService.openNotificationModal();
   }
 
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+  goToFuelHome(){
+  this.router.navigate(['home'])
+}
 }

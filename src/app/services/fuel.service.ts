@@ -66,4 +66,9 @@ getAllCars(): Observable<any>{
   const headers = this.getHeaders();
   return this.http.get('https://localhost:5001/api/Company/GetAllCompanies', { headers });
 }
+getAllCompaniesWithCars(){
+  const headers = this.getHeaders();
+  return this.http.get('https://localhost:5001/api/Company/GetAllCompaniesWithCars', { headers });
 }
+}
+

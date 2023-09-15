@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginFormComponent } from '../login-form/login-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +8,15 @@ import { LoginFormComponent } from '../login-form/login-form.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  isSidebarOpen = false;
+constructor(private router: Router){}
+
+
+
+
+goToFuelHistory(){
+  this.router.navigate(['history'])
+}
+
 
 }

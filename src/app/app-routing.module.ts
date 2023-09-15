@@ -10,7 +10,7 @@ import { CompanyRegistrationComponent } from './company-registration/company-reg
 
 
 const routes: Routes = [
-  {path: 'home', component: HistoryComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginFormComponent},
   {path: 'history', component: HistoryComponent},
   {path: '', component: LoginFormComponent},
