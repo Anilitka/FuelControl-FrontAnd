@@ -7,7 +7,7 @@
 
 
 
-<button class="btn btn-primary burgerbtn" [ngClass]="{'button-open': isSidebarOpen, '': !isSidebarOpen}" (click)="toggleSidebar()">
+<button class="btn burgerbtn" [ngClass]="{'button-open': isSidebarOpen, '': !isSidebarOpen}" (click)="toggleSidebar()">
   <ng-container *ngIf="!isSidebarOpen">
     <i class="fa-solid fa-bars"></i> 
   </ng-container>
@@ -17,9 +17,9 @@
 </button> 
 <div class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen, '': !isSidebarOpen}">
 
-  <a routerLink="home" class="sidebar-brand">
+  <a routerLink="/home" class="sidebar-brand">
     <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> -->
-    <span class="fs-4 logo" (click)="goToFuelHome()">MYGPS Admin</span>
+    <span class="fs-4 logo">MYGPS Admin</span>
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
@@ -86,7 +86,7 @@
         <label class="dateLabel">to:</label>
         <input type="text" class="form-control" placeholder="MM/DD/YY" bsDatepicker [(bsValue)]="endDate">
 
-        <button  class="btn btn-success" (click)=" fillCarsInfoByDate();">Filter</button>
+        <button  class="btn filterbtn" (click)=" fillCarsInfoByDate();">Filter</button>
 
       </div>
     </div>

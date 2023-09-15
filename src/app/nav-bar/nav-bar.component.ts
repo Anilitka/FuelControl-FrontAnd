@@ -47,10 +47,6 @@ export class NavBarComponent implements OnInit{
     this.getUserRole();
   }
 
-  reloadCurrentPage() {
-    window.location.reload();
-  }
-  
   checkAdmin(){
     if(this.tokenService.getUserRole().includes("Manager")){
       this.isAdmin=true;
@@ -84,7 +80,5 @@ export class NavBarComponent implements OnInit{
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
-  goToFuelHome(){
-  this.router.navigate(['home'])
-}
+
 }

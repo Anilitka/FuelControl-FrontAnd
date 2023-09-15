@@ -70,5 +70,9 @@ getAllCompaniesWithCars(){
   const headers = this.getHeaders();
   return this.http.get('https://localhost:5001/api/Company/GetAllCompaniesWithCars', { headers });
 }
+getAllDangerFines(){
+  const headers = this.getHeaders();
+  return this.http.get('https://localhost:5001/api/Fine/GetAllDangerFine', { headers });
+}
 }
 

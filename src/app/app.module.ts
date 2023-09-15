@@ -25,6 +25,10 @@ import { CarRegModalComponent } from './car-reg-modal/car-reg-modal.component';
 import { CarDeleteModalComponent } from './car-delete-modal/car-delete-modal.component';
 import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 import { CompanyDeleteModalComponent } from './company-delete-modal/company-delete-modal.component';
+import { DangerFineComponent } from './danger-fine/danger-fine.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 export function tokenGetter() {
@@ -48,6 +52,7 @@ defineLocale('enGb', enGbLocale);
     CarDeleteModalComponent,
     CompanyRegistrationComponent,
     CompanyDeleteModalComponent,
+    DangerFineComponent,
 
   ],
   imports: [
@@ -61,14 +66,15 @@ defineLocale('enGb', enGbLocale);
     BrowserAnimationsModule,
     CommonModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
     NgbModule,
     BsDatepickerModule.forRoot(),
-
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['example.com'], // Adjust this to match your domain
-        disallowedRoutes: ['example.com/auth/'], // Adjust this to match your authentication routes
+        allowedDomains: ['example.com'], 
+        disallowedRoutes: ['example.com/auth/'],
       },
     }),
 

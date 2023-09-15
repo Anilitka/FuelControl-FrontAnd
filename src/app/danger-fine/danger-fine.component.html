@@ -1,0 +1,41 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ </head>
+<app-nav-bar></app-nav-bar>
+
+<div class="tableContainer">
+
+
+<table mat-table  [dataSource]="dataSource" class="matTable"> 
+ 
+    <ng-container matColumnDef="CarNumber">
+      <th mat-header-cell *matHeaderCellDef>Car Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.carnumber }}</td>
+    </ng-container>
+  
+ 
+    <ng-container matColumnDef="Amount">
+      <th mat-header-cell *matHeaderCellDef>Amount</th>
+      <td mat-cell *matCellDef="let element">{{ element.amount}}</td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="ReceiptNumber">
+      <th mat-header-cell *matHeaderCellDef>Receipt Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.receiptNumber}}</td>
+    </ng-container>
+  
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          No data matching the filter
+        </td>
+      </tr>
+  </table>
+
+  <mat-paginator [pageSize]="15" [pageSizeOptions]="[15, 30, 50]" class="paginator"></mat-paginator>
+ </div> 
+   

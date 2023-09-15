@@ -18,5 +18,7 @@ goToFuelHistory(){
   this.router.navigate(['history'])
 }
 
-
+goToDangerFines(){
+  this.router.navigate(['dangerFine'])
+}
 }

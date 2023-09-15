@@ -12,7 +12,9 @@ import { HttpResponse } from '@angular/common/http';
 export class CarDeleteModalComponent implements OnInit {
 
   companyName: any[] = [];
-  
+  currentPage: number = 1; 
+  carsPerPage: number = 5; 
+  totalIdPages: number;
   chosenId: string;
 
   constructor(
@@ -31,10 +33,24 @@ export class CarDeleteModalComponent implements OnInit {
     console.log('Chosen car ID:', this.chosenId);
   }
   
+
   fillAllCompaniesWithCars() {
+
     this.fuelService.getAllCompaniesWithCars().subscribe({
       next: (data: any[]) => {
-        this.companyName = data.map(company => ({ ...company, showCarInfo: false }));
+        this.companyName = data.map(company => ({
+          ...company,
+          showCarInfo: false, // Initialize to false only if it doesn't exist
+          userCarInformationDto: company.userCarInformationDto.slice(
+            (this.currentPage - 1) * this.carsPerPage,
+            this.currentPage * this.carsPerPage
+          ),
+        }));
+  
+        // Calculate totalIdPages based on the total number of cars
+        const totalCarCount = this.companyName.reduce((count, company) => count + company.userCarInformationDto.length, 0);
+        this.totalIdPages = Math.ceil(totalCarCount / this.carsPerPage);
+  
         console.log('all data of company with cars', this.companyName);
       },
       error: (error) => {
@@ -42,6 +58,7 @@ export class CarDeleteModalComponent implements OnInit {
       },
     });
   }
+  
   
   deleteCarById(id: string) {
     if (!this.chosenId) {
@@ -52,7 +69,6 @@ export class CarDeleteModalComponent implements OnInit {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
-    
     this.http
       .delete(`https://localhost:5001/api/UserCar/DeleteCarById?id=${id}`, {
         headers,
@@ -63,7 +79,7 @@ export class CarDeleteModalComponent implements OnInit {
           if (response.status === 200) {
             console.log('Deleted car:', response);
   
-            //remove the car visually
+            // Remove the car visually
             this.removeDeletedCar(id);
           } else {
             console.error('Failed to delete car. Status code:', response.status);
@@ -83,7 +99,7 @@ export class CarDeleteModalComponent implements OnInit {
   
     console.log('Deleting car with ID:', this.chosenId);
   
-    // find company by car id
+    // Find company by car id
     const companyWithCar = this.companyName.find((company) =>
       company.userCarInformationDto.some((car) => car.carId === id)
     );
@@ -93,7 +109,7 @@ export class CarDeleteModalComponent implements OnInit {
       return;
     }
   
-    // remove car 
+    // Remove car 
     const carIndex = companyWithCar.userCarInformationDto.findIndex(
       (car) => car.carId === id
     );
@@ -102,11 +118,26 @@ export class CarDeleteModalComponent implements OnInit {
       companyWithCar.userCarInformationDto.splice(carIndex, 1);
     }
   
-    //reset the chosenId
+    // Reset the chosenId
     this.chosenId = null;
   }
+  
+   previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fillAllCompaniesWithCars();
+    }
+   }
+  
+   nextPage() {
+    if (this.currentPage < this.totalIdPages) {
+      this.currentPage++;
+      this.fillAllCompaniesWithCars();
+    }
+   }
   
   toggleCarInfo(company: any) {
     company.showCarInfo = !company.showCarInfo;
   }
+  
 }
