@@ -31,46 +31,42 @@
 </head>
 
 <div class="container-fluid">
-<div class="content">
-  <div class="header">
-    <h4 class="modal-title">Delete Car</h4>
-  </div>
-  <div class="carContent">
-    <ul *ngFor="let company of companyName">
-
-      <li (click)="toggleCarInfo(company)">
-        <div class="companyName">
-          <p><b>{{ company.companyName }}</b></p>
-        </div>
-        <i class="fa-solid fa-chevron-down" style="right: 0px;"></i>
-      </li>
-
-      <hr>
-
-      <div class="cars" *ngIf="company.showCarInfo">
-        <ul>
-          <li *ngFor="let car of company.userCarInformationDto">
-            <div class="carNumber">
-              <p><b>{{ car.carNumber }}</b></p>
-            </div>
-            <div class="deleteCar" (click)="returnCarId(car.carId); deleteCarById(car.carId); removeDeletedCar(car.carId)">
-              <i class="fa-solid fa-trash-can" style="color: rgb(194, 10, 10); cursor: pointer;"></i>
-            </div>
-          </li>
-          <div class="pagination">
-            <div class="page_info float-left">
-              <button (click)="previousPage()" class="btn btn-secondary leftBtn" type="button">
-                <i class="fa-solid fa-chevron-left"></i>
-              </button>
-              <button (click)="nextPage()" class="btn btn-secondary rightBtn" type="button">
-                <i class="fa-solid fa-chevron-right"></i>
-              </button>
-            </div>
+  <div class="content">
+    <div class="header">
+      <h4 class="modal-title">Delete Car</h4>
+    </div>
+    <div class="carContent">
+      <ul *ngFor="let company of companyName">
+        <li (click)="toggleCarList(company); returnCompanyId(company.Id)" >
+          <div class="companyName">
+            <p><b>{{ company.companyName }}</b></p>
           </div>
-
-        </ul>
-      </div>
-    </ul>
+          <i class="fa-solid fa-chevron-down" style="right: 0px;" [class.fa-chevron-up]="showCarList[company.id]"></i>
+        </li>
+        <hr>
+        <div class="cars" *ngIf="showCarList[company.id]">
+          <ul>
+            <li *ngFor="let car of getPaginatedCars(company.userCarInformationDto, company.currentPage)">
+              <div class="carNumber">
+                <p><b>{{ car.carNumber }}</b></p>
+              </div>
+              <div class="deleteCar" (click)="returnCarId(car.carId); deleteCarById(car.carId); removeDeletedCar(car.carId)">
+                <i class="fa-solid fa-trash-can" style="color: rgb(194, 10, 10); cursor: pointer;"></i>
+              </div>
+            </li>
+            <div class="pagination">
+              <div class="page_info float-left">
+                <button (click)="previousPage(company)" class="btn btn-secondary leftBtn" type="button">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button (click)="nextPage(company)" class="btn btn-secondary rightBtn" type="button">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </ul>
+    </div>
   </div>
-</div>
 </div>

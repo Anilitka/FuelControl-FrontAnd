@@ -16,6 +16,9 @@ export class CarDeleteModalComponent implements OnInit {
   carsPerPage: number = 5; 
   totalIdPages: number;
   chosenId: string;
+  showCarList: { [key: string]: boolean } = {};
+ companyId: any;
+
 
   constructor(
     private fuelService: FuelService,
@@ -32,24 +35,20 @@ export class CarDeleteModalComponent implements OnInit {
     this.chosenId = carId;
     console.log('Chosen car ID:', this.chosenId);
   }
+  returnCompanyId(companyId:any) {
+    this.companyId = companyId;
+    console.log('company id',this.companyId)
+  }
   
 
   fillAllCompaniesWithCars() {
-
     this.fuelService.getAllCompaniesWithCars().subscribe({
       next: (data: any[]) => {
         this.companyName = data.map(company => ({
           ...company,
-          showCarInfo: false, // Initialize to false only if it doesn't exist
-          userCarInformationDto: company.userCarInformationDto.slice(
-            (this.currentPage - 1) * this.carsPerPage,
-            this.currentPage * this.carsPerPage
-          ),
+          userCarInformationDto: company.userCarInformationDto,
+          currentPage: 1, // Add a currentPage property to each company
         }));
-  
-        // Calculate totalIdPages based on the total number of cars
-        const totalCarCount = this.companyName.reduce((count, company) => count + company.userCarInformationDto.length, 0);
-        this.totalIdPages = Math.ceil(totalCarCount / this.carsPerPage);
   
         console.log('all data of company with cars', this.companyName);
       },
@@ -58,7 +57,6 @@ export class CarDeleteModalComponent implements OnInit {
       },
     });
   }
-  
   
   deleteCarById(id: string) {
     if (!this.chosenId) {
@@ -122,22 +120,28 @@ export class CarDeleteModalComponent implements OnInit {
     this.chosenId = null;
   }
   
-   previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.fillAllCompaniesWithCars();
-    }
-   }
+  getPaginatedCars(cars: any[], currentPage: number): any[] {
+    const startIndex = (currentPage - 1) * this.carsPerPage;
+    const endIndex = startIndex + this.carsPerPage;
+    return cars.slice(startIndex, endIndex);
+  }
   
-   nextPage() {
-    if (this.currentPage < this.totalIdPages) {
-      this.currentPage++;
-      this.fillAllCompaniesWithCars();
+  previousPage(company: any) {
+    if (company.currentPage > 1) {
+      company.currentPage--;
     }
-   }
+  }
   
-  toggleCarInfo(company: any) {
-    company.showCarInfo = !company.showCarInfo;
+  nextPage(company: any) {
+    const totalPages = Math.ceil(company.userCarInformationDto.length / this.carsPerPage);
+    if (company.currentPage < totalPages) {
+      company.currentPage++;
+    }
+  }
+  
+  toggleCarList(company: any) {
+    const companyId = company.id;
+    this.showCarList[companyId] = !this.showCarList[companyId];
   }
   
 }
