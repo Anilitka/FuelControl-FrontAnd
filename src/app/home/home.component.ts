@@ -21,4 +21,7 @@ goToFuelHistory(){
 goToDangerFines(){
   this.router.navigate(['dangerFine'])
 }
+goToTechControll(){
+  this.router.navigate(['techControll'])
+}
 }

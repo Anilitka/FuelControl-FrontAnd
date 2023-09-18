@@ -74,5 +74,10 @@ getAllDangerFines(){
   const headers = this.getHeaders();
   return this.http.get('https://localhost:5001/api/Fine/GetAllDangerFine', { headers });
 }
+getAllCarsWithNoInspection(){
+  const headers = this.getHeaders();
+  return this.http.get('https://localhost:5001/api/TechCar/GetAllCarsWithNoInspection', { headers });
+}
+
 }
 

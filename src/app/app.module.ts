@@ -28,6 +28,7 @@ import { CompanyDeleteModalComponent } from './company-delete-modal/company-dele
 import { DangerFineComponent } from './danger-fine/danger-fine.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { TechControllComponent } from './tech-controll/tech-controll.component';
 
 
 
@@ -53,6 +54,7 @@ defineLocale('enGb', enGbLocale);
     CompanyRegistrationComponent,
     CompanyDeleteModalComponent,
     DangerFineComponent,
+    TechControllComponent,
 
   ],
   imports: [

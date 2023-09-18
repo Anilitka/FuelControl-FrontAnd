@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 import { DangerFineComponent } from './danger-fine/danger-fine.component';
+import { TechControllComponent } from './tech-controll/tech-controll.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: '', component: LoginFormComponent},
   {path: 'registration', component: RegistrationFormComponent},
   {path: 'company-registration', component: CompanyRegistrationComponent },
-  {path: 'dangerFine', component: DangerFineComponent}
+  {path: 'dangerFine', component: DangerFineComponent},
+  {path: 'techControll', component: TechControllComponent}
 
 
 ];

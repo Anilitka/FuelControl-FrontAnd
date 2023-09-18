@@ -4,14 +4,15 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-danger-fine',
-  templateUrl: './danger-fine.component.html',
-  styleUrls: ['./danger-fine.component.css']
+  selector: 'app-tech-controll',
+  templateUrl: './tech-controll.component.html',
+  styleUrls: ['./tech-controll.component.css']
 })
-export class DangerFineComponent {
+export class TechControllComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
+    'Id',
     'CarNumber',
     'Amount',
     'ReceiptNumber'
@@ -24,7 +25,7 @@ export class DangerFineComponent {
     this.getDangerFines();
   }
   getDangerFines(){
-    this.fuelService.getAllDangerFines().subscribe({
+    this.fuelService.getAllCarsWithNoInspection().subscribe({
       next: (data: any) => {
         this.dataSource = data;
         console.log('all data', this.dataSource);
