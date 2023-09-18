@@ -35,10 +35,7 @@ export class CarDeleteModalComponent implements OnInit {
     this.chosenId = carId;
     console.log('Chosen car ID:', this.chosenId);
   }
-  returnCompanyId(companyId:any) {
-    this.companyId = companyId;
-    console.log('company id',this.companyId)
-  }
+
   
 
   fillAllCompaniesWithCars() {
@@ -47,7 +44,7 @@ export class CarDeleteModalComponent implements OnInit {
         this.companyName = data.map(company => ({
           ...company,
           userCarInformationDto: company.userCarInformationDto,
-          currentPage: 1, // Add a currentPage property to each company
+          currentPage: 1, 
         }));
   
         console.log('all data of company with cars', this.companyName);
@@ -140,8 +137,8 @@ export class CarDeleteModalComponent implements OnInit {
   }
   
   toggleCarList(company: any) {
-    const companyId = company.id;
-    this.showCarList[companyId] = !this.showCarList[companyId];
+    const companyName = company.companyName;
+    this.showCarList[companyName] = !this.showCarList[companyName];
   }
   
 }

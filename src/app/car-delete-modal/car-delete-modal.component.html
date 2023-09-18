@@ -37,14 +37,14 @@
     </div>
     <div class="carContent">
       <ul *ngFor="let company of companyName">
-        <li (click)="toggleCarList(company); returnCompanyId(company.Id)" >
+        <li (click)="toggleCarList(company)" >
           <div class="companyName">
             <p><b>{{ company.companyName }}</b></p>
           </div>
-          <i class="fa-solid fa-chevron-down" style="right: 0px;" [class.fa-chevron-up]="showCarList[company.id]"></i>
+          <i class="fa-solid fa-chevron-down" style="right: 0px;" [class.fa-chevron-up]="showCarList[company.companyName]"></i>
         </li>
         <hr>
-        <div class="cars" *ngIf="showCarList[company.id]">
+        <div class="cars" *ngIf="showCarList[company.companyName]">
           <ul>
             <li *ngFor="let car of getPaginatedCars(company.userCarInformationDto, company.currentPage)">
               <div class="carNumber">
