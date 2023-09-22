@@ -7,7 +7,7 @@
       "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: start",
-      "url": "https://localhost:5001/"
+      "url": "https://mygpsadminbe.mygps.ge:4436/"
     },
     {
       "name": "ng test",
