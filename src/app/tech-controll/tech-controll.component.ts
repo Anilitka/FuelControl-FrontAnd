@@ -12,12 +12,11 @@ export class TechControllComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
-    'Id',
     'CarNumber',
     'Amount',
     'ReceiptNumber'
   ];
-
+  filterTxt: string = '';
   constructor(
     private fuelService: FuelService, 
   ) {}
@@ -36,5 +35,8 @@ export class TechControllComponent {
         console.error('Error loading cars data by id:', error)
       }
     })
+  }
+  applyFilter() {
+    this.dataSource.filter = this.filterTxt.trim().toLowerCase();
   }
 }

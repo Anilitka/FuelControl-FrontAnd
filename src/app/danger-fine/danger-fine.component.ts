@@ -16,13 +16,14 @@ export class DangerFineComponent {
     'Amount',
     'ReceiptNumber'
   ];
-
+  filterTxt: string = '';
   constructor(
     private fuelService: FuelService, 
   ) {}
   ngOnInit() {
     this.getDangerFines();
   }
+
   getDangerFines(){
     this.fuelService.getAllDangerFines().subscribe({
       next: (data: any) => {
@@ -35,5 +36,8 @@ export class DangerFineComponent {
         console.error('Error loading cars data by id:', error)
       }
     })
+  }
+  applyFilter() {
+    this.dataSource.filter = this.filterTxt.trim().toLowerCase();
   }
 }

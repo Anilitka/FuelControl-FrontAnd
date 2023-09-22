@@ -3,6 +3,7 @@
     margin: auto;
     border: 1px solid rgba(179, 170, 170, 0.404);
     border-radius: 7px;
+    
 }
 th {
 text-align: center;
@@ -20,4 +21,7 @@ td{
 }
 .carNumber{
     color: red !important;
+}
+.searchInput{
+    margin: 30px auto;
 }

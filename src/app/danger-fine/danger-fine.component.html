@@ -2,11 +2,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
  </head>
 <app-nav-bar></app-nav-bar>
-
+  <input [(ngModel)]="filterTxt" class="form-control mr-2 searchInput" #search style="width: 300px" placeholder="Search" type="text" (input)="applyFilter()">
 <div class="tableContainer">
 
 
-<table mat-table  [dataSource]="dataSource" class="matTable"> 
+
+<table mat-table  [dataSource]="dataSource | search: filterTxt" class="matTable"> 
  
     <ng-container matColumnDef="CarNumber" >
       <th mat-header-cell *matHeaderCellDef >Car Number</th>
@@ -26,10 +27,10 @@
     </ng-container>
   
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" [dataSource]="dataSource | search: filterTxt"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   
-    <tr class="mat-row" *matNoDataRow>
+    <tr class="mat-row" *matNoDataRow >
         <td class="mat-cell" colspan="4">
           No data matching the filter
         </td>

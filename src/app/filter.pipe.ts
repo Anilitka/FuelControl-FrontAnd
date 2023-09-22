@@ -7,6 +7,10 @@ import {Pipe, PipeTransform } from "@angular/core";
 
 export class FilterPipe implements PipeTransform{
 transform(value:any, filterTxt:any) {
+    
+    if (!Array.isArray(value)) {
+        return value; // Return value as is if it's not an array
+    }
 if(!value) return null;
 if(!filterTxt) return value;
 filterTxt = filterTxt.toLowerCase();
