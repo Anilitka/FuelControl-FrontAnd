@@ -9,6 +9,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 import { DangerFineComponent } from './danger-fine/danger-fine.component';
 import { TechControllComponent } from './tech-controll/tech-controll.component';
+import { TagsControllComponent } from './tags-controll/tags-controll.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationFormComponent},
   {path: 'company-registration', component: CompanyRegistrationComponent },
   {path: 'dangerFine', component: DangerFineComponent},
-  {path: 'techControll', component: TechControllComponent}
+  {path: 'techControll', component: TechControllComponent},
+  {path: 'tags', component: TagsControllComponent}
 
 
 ];

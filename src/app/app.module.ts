@@ -29,6 +29,7 @@ import { DangerFineComponent } from './danger-fine/danger-fine.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TechControllComponent } from './tech-controll/tech-controll.component';
+import { TagsControllComponent } from './tags-controll/tags-controll.component';
 
 
 
@@ -55,6 +56,7 @@ defineLocale('enGb', enGbLocale);
     CompanyDeleteModalComponent,
     DangerFineComponent,
     TechControllComponent,
+    TagsControllComponent,
 
   ],
   imports: [

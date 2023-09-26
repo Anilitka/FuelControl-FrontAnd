@@ -24,4 +24,7 @@ goToDangerFines(){
 goToTechControll(){
   this.router.navigate(['techControll'])
 }
+goToTagsControll(){
+  this.router.navigate(['tags'])
+}
 }
