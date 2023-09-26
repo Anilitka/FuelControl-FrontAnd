@@ -1,4 +1,71 @@
-
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+  
+  
+  
+  <button class="btn burgerbtn" [ngClass]="{'button-open': isSidebarOpen, '': !isSidebarOpen}" (click)="toggleSidebar()">
+    <ng-container *ngIf="!isSidebarOpen">
+      <i class="fa-solid fa-bars"></i> 
+    </ng-container>
+    <ng-container *ngIf="isSidebarOpen">
+      <i class="fa-solid fa-x"></i> 
+    </ng-container>
+  </button> 
+  <div class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen, '': !isSidebarOpen}">
+  
+    <a routerLink="/home" class="sidebar-brand">
+      <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> -->
+      <span class="fs-4 logo">MYGPS Admin</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+  
+     <li class="nav-item regitem">
+      <div class="dropdown">
+        <a class="btn btn-secondary" aria-expanded="false" style="margin-bottom: 10px;" 
+        (click)="goToFuelHistory()" role="button">
+          Fuel History 
+        </a>
+        <a (click)="goTotags()" class="btn btn-secondary" role="button" style="margin-bottom: 10px;" >Tag History</a>
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Create Tag
+         </a>
+  
+        <ul class="dropdown-menu ">
+         <li class="addTag">
+            <a class="dropdown-item nav-link text-white" (click)="openAddTags()"> Add Tag </a>
+          </li>
+          <li class="deleteTag">
+            <a class="dropdown-item nav-link text-white" (click)="openDeleteTags()">Delete Tag</a>
+          </li>
+        </ul>
+      </div>
+    </li> 
+  
+  
+    </ul>
+  
+    <button *ngIf="isAdmin" class="btn btn-primary mb-3" (click)="openNotification()">User Approval</button>
+  
+  
+  
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="./assets/imgs/man.png" alt="" width="32" height="32" class="rounded-circle me-2" style="background-color: darkgrey">
+        <strong >{{userName}}</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1" >
+        <li><a *ngIf="isAdmin" class="dropdown-item" (click)="open()" style="cursor: pointer;">User registration</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
+  </div> 
 <input [(ngModel)]="filterTxt" class="form-control mr-2 searchInput" #search style="width: 300px" placeholder="Search" type="text" (input)="applyFilter()">
 <div class="tableContainer">
 
