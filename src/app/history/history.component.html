@@ -24,35 +24,29 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
 
-
    <li class="nav-item regitem">
     <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Company Management
+      <a class="btn btn-secondary" aria-expanded="false" style="margin-bottom: 10px;" 
+      (click)="goToFuelHistory()">
+        Fuel History 
+      </a>
+      <a (click)="goTotags()" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Create Tag
        </a>
-    
+
       <ul class="dropdown-menu ">
-        <li class="carReg">
-          <a class="nav-link text-white" aria-current="page" routerLinkActive="active" (click)="openModal()">
-  
-          Car Registration
-        </a>
-      </li>
-        <li class="carDel">
-          <a class="dropdown-item nav-link text-white " (click)="openDeleteModal()">Delete Car</a>
+       <li class="addTag">
+          <a class="dropdown-item nav-link text-white " (click)="openCompanyRegistration()"> Add Tag </a>
+        </li>
+        <li class="deleteTag">
+          <a class="dropdown-item nav-link text-white " (click)="openDeleteModal()">Delete Tag</a>
         </li>
         
-        <li class="companyReg">
-          <a class="dropdown-item nav-link text-white " (click)="openCompanyRegistration()"> Add Company </a>
-        </li>
-
-        <li class="deleteCompany">
-          <a class="dropdown-item nav-link text-white " (click)="openCompanyDelete()"> Delete Company </a>
-        </li>
-
       </ul>
     </div>
   </li> 
+
+
 
   </ul>
 

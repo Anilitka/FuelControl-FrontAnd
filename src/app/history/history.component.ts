@@ -303,10 +303,15 @@ toggleSidebar() {
 goToFuelHome(){
 this.router.navigate(['home'])
 }
+
+goToFuelHistory(){
+  this.router.navigate(['history'])
+}
+goTotags(){
+  this.router.navigate(['tags'])
+}
 }
  
-
-
 
 
 
