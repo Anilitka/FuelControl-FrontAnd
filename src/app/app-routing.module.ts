@@ -10,7 +10,8 @@ import { CompanyRegistrationComponent } from './company-registration/company-reg
 import { DangerFineComponent } from './danger-fine/danger-fine.component';
 import { TechControllComponent } from './tech-controll/tech-controll.component';
 import { TagsControllComponent } from './tags-controll/tags-controll.component';
-
+import { AddTagModalComponent } from './add-tag-modal/add-tag-modal.component';
+import { DeleteTagModalComponent } from './delete-tag-modal/delete-tag-modal.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -22,8 +23,9 @@ const routes: Routes = [
   {path: 'company-registration', component: CompanyRegistrationComponent },
   {path: 'dangerFine', component: DangerFineComponent},
   {path: 'techControll', component: TechControllComponent},
-  {path: 'tags', component: TagsControllComponent}
-
+  {path: 'tags', component: TagsControllComponent},
+  {path: 'addTags', component: AddTagModalComponent},
+  {path: 'deleteTags', component: DeleteTagModalComponent},
 
 ];
 

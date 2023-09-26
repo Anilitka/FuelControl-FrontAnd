@@ -1,0 +1,43 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  </head>
+
+<div class="container-fluid">
+<form [formGroup] = "addTagForm" (ngSubmit)="tagRegistration()">
+    <div class="modal-header">
+        <h4 class="modal-title">Tag Registration</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-floating mb-3 mt-3 carNumberInp">
+            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" name="cardNumber" formControlName="cardNumber">
+            <label for="cardNumber">Card Number</label>
+            <div *ngIf="addTagForm.get('cardNumber').hasError('required') && addTagForm.get('cardNumber').touched || submitted" class="alert">
+              Please enter card number
+            </div>
+          </div>
+        
+          <div class="form-floating mb-3 mt-3 techPassInp">
+            <input type="text" class="form-control" id="VehicleNumber" placeholder="Vehicle Number" name="VehicleNumber" formControlName="VehicleNumber">
+            <label for="VehicleNumber">Vehicle Number</label>
+            <div *ngIf="addTagForm.get('VehicleNumber').hasError('required') && addTagForm.get('VehicleNumber').touched || submitted" class="alert">
+              Please enter Vehicle number
+            </div>
+          </div>
+        
+          <div class="form-floating mb-3 mt-3 techPassInp">
+            <input type="text" class="form-control" id="VehicleName" placeholder="Vehicle name" name="VehicleName" formControlName="VehicleName">
+            <label for="VehicleNumber">Vehicle Name</label>
+            <div *ngIf="addTagForm.get('VehicleName').hasError('required') && addTagForm.get('VehicleName').touched || submitted" class="alert">
+              Please enter Vehicle Name
+            </div>
+          </div>
+
+
+          <button type="submit" class="btn btn-success regbtn">Registrate</button>
+      </div>  
+</form>
+</div>
+

@@ -30,6 +30,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TechControllComponent } from './tech-controll/tech-controll.component';
 import { TagsControllComponent } from './tags-controll/tags-controll.component';
+import { AddTagModalComponent } from './add-tag-modal/add-tag-modal.component';
+import { DeleteTagModalComponent } from './delete-tag-modal/delete-tag-modal.component';
 
 
 
@@ -57,6 +59,8 @@ defineLocale('enGb', enGbLocale);
     DangerFineComponent,
     TechControllComponent,
     TagsControllComponent,
+    AddTagModalComponent,
+    DeleteTagModalComponent,
 
   ],
   imports: [

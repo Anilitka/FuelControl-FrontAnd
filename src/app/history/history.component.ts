@@ -17,6 +17,8 @@ import { CarRegModalComponent } from '../car-reg-modal/car-reg-modal.component';
 import { CarDeleteModalComponent } from '../car-delete-modal/car-delete-modal.component';
 import { CompanyRegistrationComponent } from '../company-registration/company-registration.component';
 import { CompanyDeleteModalComponent } from '../company-delete-modal/company-delete-modal.component';
+import { AddTagModalComponent } from '../add-tag-modal/add-tag-modal.component';
+import { DeleteTagModalComponent } from '../delete-tag-modal/delete-tag-modal.component';
 
 @Component({
   selector: 'app-history',
@@ -280,18 +282,6 @@ getUserRole(){
 open() {
   this._modal.open(ModalComponent);
 }
-openModal(){
-  this._modal.open(CarRegModalComponent)
-}
-openDeleteModal(){
-  this._modal.open(CarDeleteModalComponent)
-}
-openCompanyRegistration(){
-  this._modal.open(CompanyRegistrationComponent)
-}
-openCompanyDelete(){
-  this._modal.open(CompanyDeleteModalComponent)
-}
 
 openNotification() {
   this.notificationService.openNotificationModal();
@@ -309,6 +299,12 @@ goToFuelHistory(){
 }
 goTotags(){
   this.router.navigate(['tags'])
+}
+openAddTags() {
+  this._modal.open(AddTagModalComponent)
+}
+openDeleteTags(){
+  this._modal.open(DeleteTagModalComponent)
 }
 }
  

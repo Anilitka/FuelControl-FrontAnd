@@ -27,25 +27,24 @@
    <li class="nav-item regitem">
     <div class="dropdown">
       <a class="btn btn-secondary" aria-expanded="false" style="margin-bottom: 10px;" 
-      (click)="goToFuelHistory()">
+      (click)="goToFuelHistory()" role="button">
         Fuel History 
       </a>
-      <a (click)="goTotags()" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <a (click)="goTotags()" class="btn btn-secondary" role="button" style="margin-bottom: 10px;" >Tag History</a>
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         Create Tag
        </a>
 
       <ul class="dropdown-menu ">
        <li class="addTag">
-          <a class="dropdown-item nav-link text-white " (click)="openCompanyRegistration()"> Add Tag </a>
+          <a class="dropdown-item nav-link text-white" (click)="openAddTags()"> Add Tag </a>
         </li>
         <li class="deleteTag">
-          <a class="dropdown-item nav-link text-white " (click)="openDeleteModal()">Delete Tag</a>
+          <a class="dropdown-item nav-link text-white" (click)="openDeleteTags()">Delete Tag</a>
         </li>
-        
       </ul>
     </div>
   </li> 
-
 
 
   </ul>
