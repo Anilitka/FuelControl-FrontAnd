@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-tags-controll',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./tags-controll.component.css']
 })
 export class TagsControllComponent {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource!: MatTableDataSource<any>;
 
+  displayedColumns: string[] = [
+    'CardNumber',
+    'VehicleNumber',
+    'VehicleName'
+  ];
+  filterTxt: string = '';
+  applyFilter() {
+    this.dataSource.filter = this.filterTxt.trim().toLowerCase();
+  }
+  
 }
