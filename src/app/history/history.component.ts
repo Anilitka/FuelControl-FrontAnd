@@ -13,10 +13,6 @@ import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
 import { UserService } from '../services/user.service';
 import { ModalComponent } from '../modal/modal.component';
-import { CarRegModalComponent } from '../car-reg-modal/car-reg-modal.component';
-import { CarDeleteModalComponent } from '../car-delete-modal/car-delete-modal.component';
-import { CompanyRegistrationComponent } from '../company-registration/company-registration.component';
-import { CompanyDeleteModalComponent } from '../company-delete-modal/company-delete-modal.component';
 import { AddTagModalComponent } from '../add-tag-modal/add-tag-modal.component';
 import { DeleteTagModalComponent } from '../delete-tag-modal/delete-tag-modal.component';
 

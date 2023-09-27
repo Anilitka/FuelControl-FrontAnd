@@ -32,6 +32,7 @@ import { TechControllComponent } from './tech-controll/tech-controll.component';
 import { TagsControllComponent } from './tags-controll/tags-controll.component';
 import { AddTagModalComponent } from './add-tag-modal/add-tag-modal.component';
 import { DeleteTagModalComponent } from './delete-tag-modal/delete-tag-modal.component';
+import { EditTagModalComponent } from './edit-tag-modal/edit-tag-modal.component';
 
 
 
@@ -61,6 +62,7 @@ defineLocale('enGb', enGbLocale);
     TagsControllComponent,
     AddTagModalComponent,
     DeleteTagModalComponent,
+    EditTagModalComponent,
 
   ],
   imports: [
