@@ -10,12 +10,15 @@ import { AddTagModalComponent } from '../add-tag-modal/add-tag-modal.component';
 import { DeleteTagModalComponent } from '../delete-tag-modal/delete-tag-modal.component';
 import { UserService } from '../services/user.service';
 import { EditTagModalComponent } from '../edit-tag-modal/edit-tag-modal.component';
+import { HttpClient } from '@angular/common/http';
+import { FuelService } from '../services/fuel.service';
 
 @Component({
   selector: 'app-tags-controll',
   templateUrl: './tags-controll.component.html',
   styleUrls: ['./tags-controll.component.css']
 })
+
 export class TagsControllComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource!: MatTableDataSource<any>;
@@ -26,12 +29,7 @@ export class TagsControllComponent {
     'VehicleName'
   ];
   choosenId: any;
-  fakeData = [
-    {id:1, CardNumber: '001', VehicleNumber: 'ABC123', VehicleName: 'Car 1' },
-    {id:2, CardNumber: '002', VehicleNumber: 'XYZ789', VehicleName: 'Car 2' },
-    {id:3, CardNumber: '003', VehicleNumber: 'DEF456', VehicleName: 'Car 3' },
 
-  ];
   filterTxt: string = '';
   isSidebarOpen = false;
   userName: string;
@@ -40,15 +38,20 @@ export class TagsControllComponent {
     private _modal: NgbModal,
     private router: Router,
     private notificationService: NotificationService,
-    private userService: UserService)
+    private userService: UserService,
+    private http: HttpClient,
+    private fuelService: FuelService
+    )
+    
     {
-      this.dataSource = new MatTableDataSource(this.fakeData);
+
     }
   applyFilter() {
     this.dataSource.filter = this.filterTxt.trim().toLowerCase();
   }
   
   ngOnInit(): void {
+    this.getUnidentifiedtags();
     this.checkAdmin();
   
     this.userService.getUsername().subscribe(username => {
@@ -62,11 +65,27 @@ export class TagsControllComponent {
   
   
   }
+
+  getUnidentifiedtags(){
+    this.fuelService.getAllTags().subscribe({
+      next: (data: any) =>{
+        this.dataSource = data;
+        console.log('all data', this.dataSource);
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+      },
+      error: (error) => {
+        console.error('Error loading company:', error)
+      }
+    })
+  }
+  
   
 getChoosenId(tagId: any){
   this.choosenId = tagId;
   console.log(this.choosenId)
 }
+
 retrieveUserInformation(): void {
   const userRole = sessionStorage.getItem('userRole');
   const userName = sessionStorage.getItem('userName');
@@ -77,6 +96,7 @@ retrieveUserInformation(): void {
   this.tokenService.setUserInformation(userRole, userName);
   console.log()
 }
+
 reloadCurrentPage() {
   window.location.reload();
 }
@@ -86,6 +106,7 @@ checkAdmin(){
     this.isAdmin=true;
   }
 }
+
 getUserRole(){
   console.log('I return roles',this.tokenService.getUserRole());
   return this.tokenService.getUserRole();
@@ -102,6 +123,7 @@ openNotification() {
 toggleSidebar() {
   this.isSidebarOpen = !this.isSidebarOpen;
 }
+
 goToFuelHome(){
 this.router.navigate(['home'])
 }
@@ -109,15 +131,19 @@ this.router.navigate(['home'])
 goToFuelHistory(){
   this.router.navigate(['history'])
 }
+
 goTotags(){
   this.router.navigate(['tags'])
 }
+
 openAddTags() {
   this._modal.open(AddTagModalComponent)
 }
+
 openDeleteTags(){
   this._modal.open(DeleteTagModalComponent)
 }
+
 openEditTags(){
   this._modal.open(EditTagModalComponent)
 }
