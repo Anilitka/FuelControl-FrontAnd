@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-tag-modal',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./edit-tag-modal.component.css']
 })
 export class EditTagModalComponent {
+  tagEditForm: FormGroup;
+  submitted = false;
 
+
+fillCardId(){
+
+}
+
+
+
+  tagEdit(){
+    this.submitted = true;
+  }
 }

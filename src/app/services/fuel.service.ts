@@ -79,5 +79,9 @@ getAllCarsWithNoInspection(){
   return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/TechCar/GetAllCarsWithNoInspection', { headers });
 }
 
+getAllTags(){
+  const headers = this.getHeaders();
+  return this.http.get('https://localhost:5001/api/FuelTracking/GetAllUnidentifiedTags', { headers });
+}
 }
 

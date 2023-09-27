@@ -1,1 +1,32 @@
-<p>edit-tag-modal works!</p>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  </head>
+
+<div class="container-fluid">
+  <form [formGroup] = "tagEditForm" (ngSubmit)="tagEdit()" >  
+     <!-- (ngSubmit)="ureg()" -->
+<div class="carRegForm">
+ <div class="modal-header">
+    <h4 class="modal-title">Update Vehicle </h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-floating mb-3 mt-3 cardNumberInp">
+        <input  type="text" ng-model="myInput" class="form-control" id="cardNumber" placeholder="Card Number" name="cardNumber" formControlName="cardNumber" >
+        <label for="carNumber">Card Number</label>
+      </div>
+      <div class="form-floating mb-3 mt-3 vehicleName">
+        <input  type="text" ng-model="myInput" class="form-control" id="vehicleName" placeholder="Tech Passport Id" name="vehicleName" formControlName="vehicleName" required>
+        <label for="techPass">Vehicle Name</label>
+        <div *ngIf="tagEditForm.controls['vehicleName'].invalid && (submitted || tagEditForm.controls['vehicleName'].touched)  " class="alert" >
+            Please enter vehicle name
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success regbtn">Update </button>
+  </div>    
+</div>
+
+ </form>    
+</div>

@@ -75,17 +75,17 @@
  
     <ng-container matColumnDef="CardNumber" >
       <th mat-header-cell *matHeaderCellDef>Card Number</th>
-      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.id)">{{ element.CardNumber }}</td>
+      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.cardID)">{{ element.cardID }}</td>
     </ng-container>
     <ng-container matColumnDef="VehicleNumber">
       <th mat-header-cell *matHeaderCellDef>Vehicle Number</th>
-      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.id)">{{ element.VehicleNumber}}</td>
+      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.cardID)">{{ element.vehicleID}}</td>
     </ng-container>
   
 
     <ng-container matColumnDef="VehicleName">
       <th mat-header-cell *matHeaderCellDef>Vehicle Name</th>
-      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.id)">{{ element.VehicleName}}</td>
+      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.cardID)">{{ element.vehicleName}}</td>
     </ng-container>
   
 
