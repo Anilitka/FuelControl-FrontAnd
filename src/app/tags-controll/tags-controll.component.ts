@@ -25,10 +25,11 @@ export class TagsControllComponent {
     'VehicleNumber',
     'VehicleName'
   ];
+  choosenId: any;
   fakeData = [
-    { CardNumber: '001', VehicleNumber: 'ABC123', VehicleName: 'Car 1' },
-    { CardNumber: '002', VehicleNumber: 'XYZ789', VehicleName: 'Car 2' },
-    { CardNumber: '003', VehicleNumber: 'DEF456', VehicleName: 'Car 3' },
+    {id:1, CardNumber: '001', VehicleNumber: 'ABC123', VehicleName: 'Car 1' },
+    {id:2, CardNumber: '002', VehicleNumber: 'XYZ789', VehicleName: 'Car 2' },
+    {id:3, CardNumber: '003', VehicleNumber: 'DEF456', VehicleName: 'Car 3' },
 
   ];
   filterTxt: string = '';
@@ -57,12 +58,15 @@ export class TagsControllComponent {
     this.userName = this.tokenService.getUserName();
     console.log('Username:', this.userName);
 
-      this.retrieveUserInformation();
+    this.retrieveUserInformation();
   
   
   }
   
-
+getChoosenId(tagId: any){
+  this.choosenId = tagId;
+  console.log(this.choosenId)
+}
 retrieveUserInformation(): void {
   const userRole = sessionStorage.getItem('userRole');
   const userName = sessionStorage.getItem('userName');
