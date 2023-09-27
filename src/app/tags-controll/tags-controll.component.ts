@@ -9,6 +9,7 @@ import { NotificationService } from '../services/notification.service';
 import { AddTagModalComponent } from '../add-tag-modal/add-tag-modal.component';
 import { DeleteTagModalComponent } from '../delete-tag-modal/delete-tag-modal.component';
 import { UserService } from '../services/user.service';
+import { EditTagModalComponent } from '../edit-tag-modal/edit-tag-modal.component';
 
 @Component({
   selector: 'app-tags-controll',
@@ -24,6 +25,12 @@ export class TagsControllComponent {
     'VehicleNumber',
     'VehicleName'
   ];
+  fakeData = [
+    { CardNumber: '001', VehicleNumber: 'ABC123', VehicleName: 'Car 1' },
+    { CardNumber: '002', VehicleNumber: 'XYZ789', VehicleName: 'Car 2' },
+    { CardNumber: '003', VehicleNumber: 'DEF456', VehicleName: 'Car 3' },
+
+  ];
   filterTxt: string = '';
   isSidebarOpen = false;
   userName: string;
@@ -32,7 +39,10 @@ export class TagsControllComponent {
     private _modal: NgbModal,
     private router: Router,
     private notificationService: NotificationService,
-    private userService: UserService){}
+    private userService: UserService)
+    {
+      this.dataSource = new MatTableDataSource(this.fakeData);
+    }
   applyFilter() {
     this.dataSource.filter = this.filterTxt.trim().toLowerCase();
   }
@@ -103,6 +113,9 @@ openAddTags() {
 }
 openDeleteTags(){
   this._modal.open(DeleteTagModalComponent)
+}
+openEditTags(){
+  this._modal.open(EditTagModalComponent)
 }
 }
 
