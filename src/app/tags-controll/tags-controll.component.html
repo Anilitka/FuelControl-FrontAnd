@@ -77,15 +77,10 @@
       <th mat-header-cell *matHeaderCellDef>Card Number</th>
       <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.cardID)">{{ element.cardID }}</td>
     </ng-container>
-    <ng-container matColumnDef="VehicleNumber">
-      <th mat-header-cell *matHeaderCellDef>Vehicle Number</th>
-      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.cardID)">{{ element.vehicleID}}</td>
-    </ng-container>
-  
 
     <ng-container matColumnDef="VehicleName">
       <th mat-header-cell *matHeaderCellDef>Vehicle Name</th>
-      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.cardID)">{{ element.vehicleName}}</td>
+      <td mat-cell *matCellDef="let element" (click)="getChoosenId(element.cardID)">Please Enter Vehicle Name</td>
     </ng-container>
   
 

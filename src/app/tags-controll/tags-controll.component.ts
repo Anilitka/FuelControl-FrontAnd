@@ -25,7 +25,6 @@ export class TagsControllComponent {
   isAdmin: boolean;
   displayedColumns: string[] = [
     'CardNumber',
-    'VehicleNumber',
     'VehicleName'
   ];
   choosenId: any;
