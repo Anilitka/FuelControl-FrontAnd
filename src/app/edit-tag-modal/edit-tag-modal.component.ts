@@ -11,10 +11,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './edit-tag-modal.component.html',
   styleUrls: ['./edit-tag-modal.component.css']
 })
+
 export class EditTagModalComponent {
   tagEditForm: FormGroup;
   submitted = false;
   @Input() cardNumber: string;
+  isCardNumberDisabled = false;
+  
 
   constructor(
     private _modal: NgbModal,
@@ -31,6 +34,26 @@ export class EditTagModalComponent {
 
   }
 
+  sendDataToServer() {
+    const cardID = this.tagEditForm.get('cardNumber').value.trim();
+    const vehicleName = this.tagEditForm.get('vehicleName').value.trim();
+  
+    const url = `https://localhost:5001/api/FuelTracking/UpdateTag?tagId=${encodeURIComponent(cardID)}&vehicleName=${encodeURIComponent(vehicleName)}`;
+    
+    this.http.patch(url, null)
+      .subscribe(
+        (response) => {
+          console.log('Response from server:', response);
+          this._modal.dismissAll();
+        },
+        (error) => {
+          console.error('Error:', error);
+          this._modal.dismissAll();
+        }
+      );
+  }
+  
+  
   closeModal() {
    this._modal.dismissAll();
   }
@@ -38,4 +61,11 @@ export class EditTagModalComponent {
   tagEdit(){
     this.submitted = true;
   }
+
+  disableCardNumber() {
+    this.isCardNumberDisabled = true;
+  }
 }
+
+
+

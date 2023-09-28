@@ -5,29 +5,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
   </head>
 
+
 <div class="container-fluid">
-  <form [formGroup] = "tagEditForm" (ngSubmit)="tagEdit()" >  
-
-<div class="carRegForm">
- <div class="modal-header">
-    <h4 class="modal-title">Update Vehicle </h4>
-  </div>
-  <div class="modal-body">
-    <div class="form-floating mb-3 mt-3 cardNumberInp">
-        <input  type="text" ng-model="myInput" class="form-control" id="cardNumber" placeholder="Card Number" name="cardNumber" formControlName="cardNumber" [(ngModel)]="cardNumber" >
-        <label for="cardNumber">Card Number</label>
+  <form [formGroup]="tagEditForm" (ngSubmit)="tagEdit()">
+    <div class="carRegForm">
+      <div class="modal-header">
+        <h4 class="modal-title">Update Vehicle</h4>
       </div>
-      <div class="form-floating mb-3 mt-3 vehicleName">
-        <input  type="text" ng-model="myInput" class="form-control" id="vehicleName" placeholder="Tech Passport Id" name="vehicleName" formControlName="vehicleName" required>
-        <label for="techPass">Vehicle Name</label>
-        <div *ngIf="tagEditForm.controls['vehicleName'].invalid && (submitted || tagEditForm.controls['vehicleName'].touched)  " class="alert" >
-            Please enter vehicle name
+      <div class="modal-body">
+        <div class="form-floating mb-3 mt-3 cardNumberInp">
+          <input
+            type="text"
+            class="form-control"
+            id="cardNumber"
+            placeholder="Card Number"
+            name="cardNumber"
+            formControlName="cardNumber"
+            [(ngModel)]="cardNumber"
+          />
+          <label for="cardNumber">Card Number</label>
         </div>
+        <div class="form-floating mb-3 mt-3 vehicleName">
+          <input
+            type="text"
+            class="form-control"
+            id="vehicleName"
+            placeholder="Tech Passport Id"
+            name="vehicleName"
+            formControlName="vehicleName"
+            required
+          />
+          <label for="techPass">Vehicle Name</label>
+          <div
+            *ngIf="
+              tagEditForm.controls['vehicleName'].invalid &&
+              (submitted || tagEditForm.controls['vehicleName'].touched)
+            "
+            class="alert"
+          >
+            Please enter a vehicle name
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success regbtn" style="margin-right: 10px;" (click)="sendDataToServer()">Update</button>
+        <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
       </div>
-      <button type="submit" class="btn btn-success regbtn">Update </button>
-      <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-  </div>    
-</div>
-
- </form>    
+    </div>
+  </form>
 </div>

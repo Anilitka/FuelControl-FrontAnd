@@ -1,0 +1,7 @@
+.alert{
+    text-align: start;
+    margin: 0;
+    padding: 0;
+    color: rgb(205, 7, 7);
+    font-weight: bold;
+}
