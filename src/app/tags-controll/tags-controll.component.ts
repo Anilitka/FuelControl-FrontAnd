@@ -144,8 +144,18 @@ openDeleteTags(){
   this._modal.open(DeleteTagModalComponent)
 }
 
-openEditTags(){
-  this._modal.open(EditTagModalComponent)
+openEditTags() {
+  // Pass the selected card number to the modal
+  const modalRef = this._modal.open(EditTagModalComponent, {
+    backdrop: 'static',
+    keyboard: false,
+    size: 'lg',
+    centered: true,
+    windowClass: 'custom-modal'
+  });
+
+  // Set the selected card number in the modal
+  modalRef.componentInstance.cardNumber = this.choosenId;
 }
 }
 

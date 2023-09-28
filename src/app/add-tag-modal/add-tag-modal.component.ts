@@ -21,6 +21,7 @@ export class AddTagModalComponent {
      ){
       this.addTagForm = this.formBuilder.group({
         cardNumber: ['', Validators.required],
+        VehicleNumber: [''],
         VehicleName: ['', Validators.required],
       });
       }
