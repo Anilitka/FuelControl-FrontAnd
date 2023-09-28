@@ -28,7 +28,7 @@ export class EditTagModalComponent {
      ){
   
     this.tagEditForm = this.formBuilder.group({
-      cardNumber: [this.cardNumber],
+      cardNumber: [{ value: this.cardNumber, disabled: true }],
       vehicleName : ['', Validators.required]     
     });
 
