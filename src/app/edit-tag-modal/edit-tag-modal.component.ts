@@ -5,6 +5,7 @@ import { FuelService } from '../services/fuel.service';
 import { TokenService } from '../services/token.service';
 import { ModalComponent } from '../modal/modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-tag-modal',
@@ -47,6 +48,7 @@ export class EditTagModalComponent {
         (response) => {
           console.log('Response from server:', response);
           this._modal.dismissAll();
+          Swal.fire({ title: 'Your tag information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
         },
         (error) => {
           console.error('Error:', error);
