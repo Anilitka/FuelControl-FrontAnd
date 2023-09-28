@@ -4,12 +4,14 @@
     padding: 0;
     box-sizing: border-box;
 }
-.container-fluid{
+
+.container{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 form{
     width: 400px;
     border: 1px solid white;
@@ -18,23 +20,39 @@ form{
     padding: 50px;
     text-align: center;
 }
-.regbtn{
+
+.closeBtn{
     text-align: center;
-    padding: 10px 115px;
+    background-color: rgb(205, 7, 7);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    margin-top: 15px;
+    width: 48%;
+    padding: 10px 0;
+}
+
+.updateBtn{
+    text-align: center;
     background-color: rgb(38, 122, 38);
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: bold;
     margin-top: 15px;
+    width: 48%;
+    margin-right: 2%;
+    padding: 10px 0;
 }
+
 .modal-header{
    display: flex;
    justify-content: center;
     margin-bottom: 15px;
 }
+
 .modal-title{
     font-family: 'Roboto Condensed', sans-serif;
     margin-bottom: 15px;
 }
+
 .modal-body{
     padding-top: 5px;
 }
@@ -46,3 +64,4 @@ form{
     color: rgb(205, 7, 7);
     font-weight: bold;
 }
+
