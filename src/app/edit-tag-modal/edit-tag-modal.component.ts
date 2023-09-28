@@ -37,7 +37,9 @@ export class EditTagModalComponent {
   sendDataToServer() {
     const cardID = this.tagEditForm.get('cardNumber').value.trim();
     const vehicleName = this.tagEditForm.get('vehicleName').value.trim();
-  
+    console.log('Card ID:', cardID);
+    console.log('Vehicle Name:', vehicleName);
+    
     const url = `https://localhost:5001/api/FuelTracking/UpdateTag?tagId=${encodeURIComponent(cardID)}&vehicleName=${encodeURIComponent(vehicleName)}`;
     
     this.http.patch(url, null)

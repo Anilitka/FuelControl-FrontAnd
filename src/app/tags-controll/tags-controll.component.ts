@@ -32,6 +32,7 @@ export class TagsControllComponent {
   filterTxt: string = '';
   isSidebarOpen = false;
   userName: string;
+  
 
   constructor(    private tokenService: TokenService,
     private _modal: NgbModal,
@@ -144,7 +145,6 @@ openDeleteTags(){
 }
 
 openEditTags() {
-  // Pass the selected card number to the modal
   const modalRef = this._modal.open(EditTagModalComponent, {
     backdrop: 'static',
     keyboard: false,
@@ -153,8 +153,9 @@ openEditTags() {
     windowClass: 'custom-modal'
   });
 
-  // Set the selected card number in the modal
   modalRef.componentInstance.cardNumber = this.choosenId;
+  modalRef.componentInstance.isCardNumberDisabled = true; 
 }
+
 }
 
