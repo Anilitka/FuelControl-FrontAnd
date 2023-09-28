@@ -48,13 +48,16 @@ export class EditTagModalComponent {
         (response) => {
           console.log('Response from server:', response);
           this._modal.dismissAll();
-          Swal.fire({ title: 'Your tag information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
+        
         },
         (error) => {
           console.error('Error:', error);
           this._modal.dismissAll();
         }
       );
+
+      
+        Swal.fire({ title: 'Your tag information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
   }
   
   
