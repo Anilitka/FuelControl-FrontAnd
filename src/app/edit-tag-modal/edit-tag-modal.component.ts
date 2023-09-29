@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuelService } from '../services/fuel.service';
@@ -29,48 +29,60 @@ export class EditTagModalComponent {
      ){
   
     this.tagEditForm = this.formBuilder.group({
-      cardNumber: [{ value: this.cardNumber, disabled: true }],
+      cardNumber: [this.cardNumber],
       vehicleName : ['', Validators.required]     
     });
+    
+    this.tagEditForm.get('cardNumber')?.disable();
 
   }
 
-  sendDataToServer() {
+sendDataToServer() {
     const cardID = this.tagEditForm.get('cardNumber').value.trim();
     const vehicleName = this.tagEditForm.get('vehicleName').value.trim();
-    console.log('Card ID:', cardID);
-    console.log('Vehicle Name:', vehicleName);
     
+    if(vehicleName == null){
+      return
+    } else {
+
     const url = `https://localhost:5001/api/FuelTracking/UpdateTag?tagId=${encodeURIComponent(cardID)}&vehicleName=${encodeURIComponent(vehicleName)}`;
-    
-    this.http.patch(url, null)
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
+
+    this.http.patch(url, null, {headers})
       .subscribe(
         (response) => {
           console.log('Response from server:', response);
           this._modal.dismissAll();
-        
         },
         (error) => {
           console.error('Error:', error);
           this._modal.dismissAll();
+
+          if (error.status === 400) {
+            Swal.fire({
+              title: 'Please enter vehicle name.',
+              icon: 'error',
+              confirmButtonColor: 'rgb(255, 0, 0)',
+            });
+          } 
         }
+        
       );
+    }
+    Swal.fire({ title: 'Your information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
 
-      
-      Swal.fire({ title: 'Your tag information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
-  }
+}
   
-  
-  closeModal() {
-   this._modal.dismissAll();
-  }
+closeModal() {
+ this._modal.dismissAll();
+}
 
-  tagEdit(){
-    this.submitted = true;
-  }
+tagEdit(){
+  this.submitted = true;
+}
 
-  disableCardNumber() {
-    this.isCardNumberDisabled = true;
+disableCardNumber() {
+  this.isCardNumberDisabled = true;
   }
 }
 

@@ -30,6 +30,30 @@ export class AddTagModalComponent {
       this.submitted = true;
       if (this.addTagForm.invalid) {
         return;
+    }else if(this.addTagForm.valid)
+    {
+      const body = {
+        cardId : this.addTagForm.get('cardNumber').value,
+        vehicleName : this.addTagForm.get('VehicleName').value
+      };
+
+   
+      const apiUrl = `https://localhost:5001/api/FuelTracking/CreateTag`;
+
+      this.http.post<any>(apiUrl, body).subscribe(
+        (response) => {
+          console.log('Response from API:', response);
+
+          Swal.fire('Success', 'Tag is registered successfully!', 'success');
+        },
+        (error) =>{
+          console.error('Error:', error);
+
+          Swal.fire('Error', 'Tag registration failed!', 'error');
+        }   
+      );
+
     }
     }
 }
+
