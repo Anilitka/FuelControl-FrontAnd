@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import { TokenService } from '../services/token.service';
 @Component({
   selector: 'app-add-tag-modal',
   templateUrl: './add-tag-modal.component.html',
@@ -16,7 +17,7 @@ export class AddTagModalComponent {
     private _modal : NgbModal,
      private formBuilder: FormBuilder,
      private http: HttpClient,
-    //  private tokenService: TokenService,
+     private tokenService: TokenService,
     //  private fuelService: FuelService
      ){
       this.addTagForm = this.formBuilder.group({
@@ -26,34 +27,40 @@ export class AddTagModalComponent {
       }
      
 
-    tagRegistration(){
-      this.submitted = true;
-      if (this.addTagForm.invalid) {
-        return;
-    }else if(this.addTagForm.valid)
-    {
+tagRegistration(){
+  this.submitted = true;
+
+  if (this.addTagForm.invalid) {
+    return;
+  }else if(this.addTagForm.valid){
       const body = {
         cardId : this.addTagForm.get('cardNumber').value,
         vehicleName : this.addTagForm.get('VehicleName').value
       };
+    console.log(body)
 
-   
-      const apiUrl = `https://localhost:5001/api/FuelTracking/CreateTag`;
 
-      this.http.post<any>(apiUrl, body).subscribe(
-        (response) => {
-          console.log('Response from API:', response);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
 
-          Swal.fire('Success', 'Tag is registered successfully!', 'success');
-        },
-        (error) =>{
-          console.error('Error:', error);
+    this.http.post('https://localhost:5001/api/FuelTracking/CreateTag', body, { headers } ).subscribe({
+      next: (response) => {
+        console.log('I am logging car reg response: ', response);
+        this.addTagForm.reset(); 
+      },
+      error: (error) => {
+        console.log('Error car reg :', error);
+        this._modal.dismissAll();
+      
+      },
+      
+    })
+  
 
-          Swal.fire('Error', 'Tag registration failed!', 'error');
-        }   
-      );
+  this._modal.dismissAll();
+  Swal.fire({ title: 'Tag is registered successfully!', confirmButtonColor: 'rgb(38, 122, 38)' });
+  }
 
-    }
-    }
+}
+    
 }
 
