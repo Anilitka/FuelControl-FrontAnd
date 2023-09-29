@@ -38,38 +38,37 @@ export class EditTagModalComponent {
   }
 
 sendDataToServer() {
-    const cardID = this.tagEditForm.get('cardNumber').value.trim();
-    const vehicleName = this.tagEditForm.get('vehicleName').value.trim();
-    
-    if(vehicleName == null){
-      return
-    } else {
 
-    const url = `https://localhost:5001/api/FuelTracking/UpdateTag?tagId=${encodeURIComponent(cardID)}&vehicleName=${encodeURIComponent(vehicleName)}`;
+
+    const body = {
+        cardId : this.tagEditForm.get('cardNumber').value,
+        vehicleName : this.tagEditForm.get('vehicleName').value
+      };
+
+    console.log(body)
+
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
-
-    this.http.patch(url, null, {headers})
-      .subscribe(
-        (response) => {
+   if(body.vehicleName != null){
+    this.http.patch('https://localhost:5001/api/FuelTracking/UpdateTag', body, {headers})
+    
+      .subscribe({
+        next: (response) => {
           console.log('Response from server:', response);
-          this._modal.dismissAll();
+             Swal.fire({ title: 'Your information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
+          this.tagEditForm.reset(); 
         },
-        (error) => {
-          console.error('Error:', error);
+        error: (error) => {
+          console.log('Error tag update:', error);
           this._modal.dismissAll();
-
-          if (error.status === 400) {
-            Swal.fire({
-              title: 'Please enter vehicle name.',
-              icon: 'error',
-              confirmButtonColor: 'rgb(255, 0, 0)',
-            });
-          } 
-        }
-        
-      );
+      Swal.fire({
+        title: 'Please enter vehicle name.',
+        icon: 'error',
+        confirmButtonColor: 'rgb(255, 0, 0)',
+      });
+          }
+        });
+    
     }
-    Swal.fire({ title: 'Your information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
 
 }
   

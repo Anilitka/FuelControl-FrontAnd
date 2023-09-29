@@ -69,8 +69,10 @@ export class CarDeleteModalComponent implements OnInit {
         headers,
         observe: 'response',
       })
-      .subscribe(
-        (response: HttpResponse<any>) => {
+      .subscribe({
+
+      
+       next:  (response: HttpResponse<any>) => {
           if (response.status === 200) {
             console.log('Deleted car:', response);
   
@@ -80,10 +82,10 @@ export class CarDeleteModalComponent implements OnInit {
             console.error('Failed to delete car. Status code:', response.status);
           }
         },
-        (error) => {
+        error :(error) => {
           console.error('Error deleting car by id:', error);
         }
-      );
+  });
   }
   
   removeDeletedCar(id: string) {
