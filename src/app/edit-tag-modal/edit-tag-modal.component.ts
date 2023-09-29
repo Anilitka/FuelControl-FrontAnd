@@ -57,7 +57,7 @@ export class EditTagModalComponent {
       );
 
       
-        Swal.fire({ title: 'Your tag information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
+      Swal.fire({ title: 'Your tag information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
   }
   
   

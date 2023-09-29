@@ -18,14 +18,7 @@
               Please enter card number
             </div>
           </div>
-        
-          <div class="form-floating mb-3 mt-3 techPassInp">
-            <input type="text" class="form-control" id="VehicleNumber" placeholder="Vehicle Number" name="VehicleNumber" formControlName="VehicleNumber">
-            <label for="VehicleNumber">Vehicle Number</label>
-            <div *ngIf="addTagForm.get('VehicleNumber').hasError('required') && addTagForm.get('VehicleNumber').touched || submitted" class="alert">
-              Please enter Vehicle number
-            </div>
-          </div>
+
         
           <div class="form-floating mb-3 mt-3 techPassInp">
             <input type="text" class="form-control" id="VehicleName" placeholder="Vehicle name" name="VehicleName" formControlName="VehicleName">
