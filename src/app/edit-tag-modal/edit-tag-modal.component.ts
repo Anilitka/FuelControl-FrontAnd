@@ -53,23 +53,24 @@ sendDataToServer() {
     
       .subscribe({
         next: (response) => {
-          console.log('Response from server:', response);
-             Swal.fire({ title: 'Your information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
+          console.log('Response from server:', response);  
           this.tagEditForm.reset(); 
         },
         error: (error) => {
           console.log('Error tag update:', error);
           this._modal.dismissAll();
-      Swal.fire({
-        title: 'Please enter vehicle name.',
-        icon: 'error',
-        confirmButtonColor: 'rgb(255, 0, 0)',
-      });
+          if (error.status === 400) {
+            Swal.fire({
+              title: 'Please enter vehicle name.',
+              icon: 'error',
+              confirmButtonColor: 'rgb(255, 0, 0)',
+            });
+          } 
           }
         });
     
     }
-
+ Swal.fire({ title: 'Your information is updated successfully', confirmButtonColor: 'rgb(38, 122, 38)' });
 }
   
 closeModal() {

@@ -26,7 +26,7 @@ getCarListData(pageindex: number, pagesize: number) {
 
 getCarDataById(Id: string, page: number, startDate?: string, endDate?: string) {
   const headers = this.getHeaders();
-  let url = `https://localhost:5001/api/WialonFuelHistory/GetWialonById?cardID=${Id}&page=${page}`;
+  let url = `https://localhost:5001/api/FuelTracking/GetWialonById?cardID=${Id}&page=${page}`;
 
   if (startDate && endDate) {
     url += `&startDate=${startDate}&endDate=${endDate}`;
@@ -49,12 +49,12 @@ getRole(){
 
 getCount(): Observable<number>{
   const headers = this.getHeaders();
-  return this.http.get<number>('https://localhost:5001/api/WialonFuelHistory/GetAllCount', {headers})
+  return this.http.get<number>('https://localhost:5001/api/FuelTracking/GetAllCount', {headers})
 }
 
 getCountById(Id:string){
   const headers = this.getHeaders();
-  return this.http.get<number>(`https://localhost:5001/api/WialonFuelHistory/GetAllCount?cardId=${Id}`, {headers})
+  return this.http.get<number>(`https://localhost:5001/api/FuelTracking/GetAllCount?cardId=${Id}`, {headers})
 }
 
 getAllCars(): Observable<any>{
