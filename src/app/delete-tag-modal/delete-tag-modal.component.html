@@ -8,12 +8,17 @@
         <div class="header">
             <h4 class="modal-title" style="margin-top: 15px;">Delete Tag</h4>
         </div>
-        <hr>
-        <div class="tagContent">
+        <div class="inputdiv">
+         <input  class="form-control mr-2 searchInput" #search style="width: 250px; height: 40px;" placeholder=" Search" type="text">
+        <button class="btn btn-success searchbtn" (click)="tagsBySearch()">Search</button>   
+        </div>
+
+
+        <div class="tagContent" *ngIf="searchOpened">
             <ul>
-                <li *ngFor="let tag of allIdentifiedTags">
+                <li >
                     <div class="tagName">
-                        <p><b>{{ tag.vehicleName }}</b></p>
+                        <p><b></b></p>
                     </div>
                     <div class="deleteTag">
                         <i class="fa-solid fa-trash-can" style="color: rgb(194, 10, 10); cursor: pointer;"></i>

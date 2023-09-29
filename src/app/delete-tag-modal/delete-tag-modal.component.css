@@ -6,7 +6,7 @@
 
 }
 .container-fluid{
-    width: 40%;
+    width: 50%;
     margin: auto;
 }
 .header{
@@ -43,4 +43,13 @@
     .leftBtn{
       margin-right: 0px;
     }
+}
+.inputdiv{
+    display: flex;
+    margin-bottom: 50px;
+}
+.searchbtn{
+    margin-left: 10px;
+    padding: 3px 15px;
+
 }

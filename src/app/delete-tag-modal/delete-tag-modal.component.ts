@@ -18,7 +18,7 @@ export class DeleteTagModalComponent {
   totalItems: any;
   totalPages: any;
   pageIndex:any = 1;
-
+  searchOpened = false;
   ngOnInit(): void {
    this.fillAllIdentifiedTags();
   }
@@ -53,6 +53,9 @@ export class DeleteTagModalComponent {
       this.pageIndex++;
     }
     this.fillAllIdentifiedTags();
+  }
+  tagsBySearch(){
+    this.searchOpened = !this.searchOpened
   }
   
 }
