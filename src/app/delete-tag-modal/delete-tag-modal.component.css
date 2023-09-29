@@ -1,3 +1,4 @@
+
 *{
     margin: 0;
     padding: 0;
@@ -20,8 +21,26 @@
 .tagContent ul li {
     display: flex;
     justify-content: space-between;
-
+    cursor: pointer;
 }
+
 .tagContent ul {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.leftBtn,.rightBtn {
+    font-size: 14px; 
+    padding: 3px 9px; 
+    margin-right: 5px;
+ }
+.pagination{
+    margin-top: 15px;
+    margin-left: 65.7%;
+}
+
+@media (max-width:1509){
+    .leftBtn{
+      margin-right: 0px;
+    }
 }

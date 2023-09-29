@@ -6,22 +6,32 @@
 <div class="container-fluid">
     <div class="content">
         <div class="header">
-            <h4 class="modal-title">Delete Tag</h4>
+            <h4 class="modal-title" style="margin-top: 15px;">Delete Tag</h4>
         </div>
+        <hr>
         <div class="tagContent">
             <ul>
-                <li>
+                <li *ngFor="let tag of allIdentifiedTags">
                     <div class="tagName">
-                   <p><b> hi</b></p> 
+                        <p><b>{{ tag.vehicleName }}</b></p>
                     </div>
-                    <div class="deleteTag" > 
-                    <i class="fa-solid fa-trash-can" style="color: rgb(194, 10, 10); cursor: pointer;"></i>    
-                     </div> 
+                    <div class="deleteTag">
+                        <i class="fa-solid fa-trash-can" style="color: rgb(194, 10, 10); cursor: pointer;"></i>
+                    </div>
                 </li>
+                <!-- <div class="pagination">
+                    <div class="page_info float-left">
+                      <button (click)="previousPage()" class="btn btn-secondary leftBtn" type="button">
+                        <i class="fa-solid fa-chevron-left"></i>
+                      </button>
+                      <button (click)="nextPage()" class="btn btn-secondary rightBtn" type="button">
+                        <i class="fa-solid fa-chevron-right"></i>
+                      </button>
+                    </div>
+                  </div> -->
             </ul>
         </div>
     </div>
 </div>
 
 
-  
