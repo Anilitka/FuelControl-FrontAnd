@@ -17,7 +17,7 @@ export class DeleteTagModalComponent {
   allIdentifiedTags = [];
   totalItems: any;
   totalPages: any;
-  pageIndex = 1
+  pageIndex:any = 1;
 
   ngOnInit(): void {
    this.fillAllIdentifiedTags();
@@ -31,6 +31,7 @@ export class DeleteTagModalComponent {
       .subscribe(
         (response) => {
           console.log('Response:', response);
+
            this.allIdentifiedTags = response;
            console.log(this.allIdentifiedTags);
         },
@@ -40,16 +41,18 @@ export class DeleteTagModalComponent {
       );
   }
 
-  previousPage(tag: any) {
-    if (tag.pageIndex > 1) {
-      tag.currentPage--;
+  previousPage() {
+    if (this.pageIndex > 1) {
+      this.pageIndex--;
     }
+    this.fillAllIdentifiedTags();
   }
   
-  nextPage(tag: any) {
-    if (tag.currentPage < 10) {
-      tag.currentPage++;
+  nextPage() {
+    if (this.pageIndex < 10) {
+      this.pageIndex++;
     }
+    this.fillAllIdentifiedTags();
   }
   
 }
