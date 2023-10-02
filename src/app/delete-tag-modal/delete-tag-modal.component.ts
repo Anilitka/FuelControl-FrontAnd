@@ -32,13 +32,15 @@ export class DeleteTagModalComponent {
     if (this.pageIndex > 1) {
       this.pageIndex--;
     }
-
+    this.getAllSearchedVehicles();
   }
   
   nextPage() {
-    if (this.pageIndex < 10) {
+    const pages = this.searchedCount / 10;
+    if (this.pageIndex < pages) {
       this.pageIndex++;
     }
+    this.getAllSearchedVehicles();
 
   }
  
@@ -52,7 +54,7 @@ export class DeleteTagModalComponent {
         this.errorMessage = 'Please enter at least 5 characters.';
         return;
       }
-
+   console.log(searchText)
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
 
      return this.http.get(`https://localhost:5001/api/FuelTracking/GetAllSearchedVehicles?pageIndex=${this.pageIndex}&text=${searchText}`, { headers }).subscribe({
