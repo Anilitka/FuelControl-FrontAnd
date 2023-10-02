@@ -56,6 +56,8 @@ export class DeleteTagModalComponent {
   }
   tagsBySearch(){
     this.searchOpened = !this.searchOpened
+    const token = this.tokenService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
   
 }
