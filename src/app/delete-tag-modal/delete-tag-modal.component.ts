@@ -18,11 +18,13 @@ export class DeleteTagModalComponent {
   totalItems: any;
   totalPages: any;
   pageIndex:any = 1;
+  text:any = '';
   searchOpened = false;
   ngOnInit(): void {
    this.fillAllIdentifiedTags();
   }
 
+  
   fillAllIdentifiedTags() {
     const token = this.tokenService.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -54,10 +56,28 @@ export class DeleteTagModalComponent {
     }
     this.fillAllIdentifiedTags();
   }
-  tagsBySearch(){
-    this.searchOpened = !this.searchOpened
-    const token = this.tokenService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+ 
+  getAllSearchedVehicles() {
+    
+    const text = document.getElementsByClassName('.searchInput');
+
+    if (this.text.trim() !== '') {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
+
+      this.http.get(`https://localhost:5001/api/FuelTracking/GetAllSearchedVehicles?pageIndex=${this.pageIndex}&text=${text}`, { headers }).subscribe({
+        next: (response) => {
+          this.searchOpened = true;
+          console.log('I am logging car reg response: ', response);
+        },
+        error: (error) => {
+          console.log('Error car reg:', error);
+        },
+      });
+    }
   }
   
-}
+
+  }
+
+  
+

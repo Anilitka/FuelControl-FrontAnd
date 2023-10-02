@@ -10,9 +10,8 @@
         </div>
         <div class="inputdiv">
          <input  class="form-control mr-2 searchInput" #search style="width: 250px; height: 40px;" placeholder=" Search" type="text">
-        <button class="btn btn-success searchbtn" (click)="tagsBySearch()">Search</button>   
+        <button class="btn btn-success searchbtn" (click)="getAllSearchedVehicles()">Search</button>   
         </div>
-
 
         <div class="tagContent" *ngIf="searchOpened">
             <ul>
