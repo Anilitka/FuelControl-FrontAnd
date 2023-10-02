@@ -14,67 +14,76 @@ export class DeleteTagModalComponent {
     private http: HttpClient,
     private tokenService: TokenService,
   ) {}
-  allIdentifiedTags = [];
+  allIdentifiedTags:any = [];
   totalItems: any;
   totalPages: any;
   pageIndex:any = 1;
   text:any = '';
   searchOpened = false;
+  searchedCount:any ;
+  errorMessage:any = '';
   ngOnInit(): void {
-   this.fillAllIdentifiedTags();
+
   }
 
   
-  fillAllIdentifiedTags() {
-    const token = this.tokenService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  
-    this.http.get<any>(`https://localhost:5001/api/FuelTracking/GetAllIdentifiedTags?pageIndex=${this.pageIndex}`, { headers })
-      .subscribe(
-        (response) => {
-          console.log('Response:', response);
-
-           this.allIdentifiedTags = response;
-           console.log(this.allIdentifiedTags);
-        },
-        (error) => {
-          console.error('Error:', error);
-        }
-      );
-  }
 
   previousPage() {
     if (this.pageIndex > 1) {
       this.pageIndex--;
     }
-    this.fillAllIdentifiedTags();
+
   }
   
   nextPage() {
     if (this.pageIndex < 10) {
       this.pageIndex++;
     }
-    this.fillAllIdentifiedTags();
+
   }
  
   getAllSearchedVehicles() {
-    
-    const text = document.getElementsByClassName('.searchInput');
+    this.searchOpened = true;
+    const inputElement = document.querySelector('.searchInput') as HTMLInputElement;;
 
-    if (this.text.trim() !== '') {
+    if (inputElement) {
+      const searchText = inputElement.value;
+      if (searchText.length < 5) {
+        this.errorMessage = 'Please enter at least 5 characters.';
+        return;
+      }
+
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
 
-      this.http.get(`https://localhost:5001/api/FuelTracking/GetAllSearchedVehicles?pageIndex=${this.pageIndex}&text=${text}`, { headers }).subscribe({
+     return this.http.get(`https://localhost:5001/api/FuelTracking/GetAllSearchedVehicles?pageIndex=${this.pageIndex}&text=${searchText}`, { headers }).subscribe({
         next: (response) => {
-          this.searchOpened = true;
-          console.log('I am logging car reg response: ', response);
+          this.allIdentifiedTags = response;
+          console.log('I am logging tag reg response: ', response);
+          this.errorMessage = '';
+
         },
         error: (error) => {
-          console.log('Error car reg:', error);
+          console.log('Error loading tags:', error);
         },
       });
     }
-  }
+    }
+    getSearchedCount(){
+      const inputElement = document.querySelector('.searchInput') as HTMLInputElement;
+      const searchText = inputElement.value; 
+      return this.http.get(`https://localhost:5001/api/FuelTracking/GetCountedVehicles?text=${searchText}`).subscribe({
+        next: (response) => {
+          console.log(response)
+          this.searchedCount = response;
+        },
+        error: (error) =>{
+          console.log('Error loading count:', error);
+        }
+      })
+    }
+
+
+  
   
 
   }

@@ -10,20 +10,25 @@
         </div>
         <div class="inputdiv">
          <input  class="form-control mr-2 searchInput" #search style="width: 250px; height: 40px;" placeholder=" Search" type="text">
-        <button class="btn btn-success searchbtn" (click)="getAllSearchedVehicles()">Search</button>   
+        <button class="btn btn-success searchbtn" (click)="getAllSearchedVehicles();getSearchedCount()">Search</button>   
         </div>
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
 
         <div class="tagContent" *ngIf="searchOpened">
-            <ul>
+            <ul *ngFor="let el of allIdentifiedTags">
                 <li >
                     <div class="tagName">
-                        <p><b></b></p>
+                        <p><b>{{el.cardId}}</b></p>
                     </div>
                     <div class="deleteTag">
                         <i class="fa-solid fa-trash-can" style="color: rgb(194, 10, 10); cursor: pointer;"></i>
                     </div>
                 </li>
-                <div class="pagination">
+
+            </ul>               
+             <div class="pagination">
                     <div class="page_info float-left">
                       <button (click)="previousPage()" class="btn btn-secondary leftBtn" type="button">
                         <i class="fa-solid fa-chevron-left"></i>
@@ -33,7 +38,6 @@
                       </button>
                     </div>
                   </div>
-            </ul>
         </div>
     </div>
 </div>
