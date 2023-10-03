@@ -22,6 +22,8 @@ export class DeleteTagModalComponent {
   searchOpened = false;
   searchedCount:any ;
   errorMessage:any = '';
+  chosenId:any;
+
   ngOnInit(): void {
 
   }
@@ -42,6 +44,11 @@ export class DeleteTagModalComponent {
     }
     this.getAllSearchedVehicles();
 
+  }
+  returnCarId(cardId: string) {
+    console.log('Received card ID:', cardId);
+    this.chosenId = cardId;
+    console.log('Chosen card ID:', this.chosenId);
   }
  
   getAllSearchedVehicles() {
@@ -69,8 +76,8 @@ export class DeleteTagModalComponent {
         },
       });
     }
-    }
-    getSearchedCount(){
+  }
+  getSearchedCount(){
       const inputElement = document.querySelector('.searchInput') as HTMLInputElement;
       const searchText = inputElement.value; 
       return this.http.get(`https://localhost:5001/api/FuelTracking/GetCountedVehicles?text=${searchText}`).subscribe({
@@ -82,7 +89,11 @@ export class DeleteTagModalComponent {
           console.log('Error loading count:', error);
         }
       })
-    }
+  }
+
+  deleteTagByCardId(){
+
+  }
 
 
   
