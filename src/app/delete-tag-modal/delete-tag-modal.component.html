@@ -22,7 +22,7 @@
                     <div class="tagName">
                         <p><b>{{el.cardId}}</b></p>
                     </div>
-                    <div class="deleteTag" (click)="returnCarId(el.cardId)">
+                    <div class="deleteTag" (click)="returnCardId(el.cardId); deleteTagByCardId(el.cardId); removeDeletedCard(el.cardId)">
                         <i class="fa-solid fa-trash-can" style="color: rgb(194, 10, 10); cursor: pointer;"></i>
                     </div>
                 </li>

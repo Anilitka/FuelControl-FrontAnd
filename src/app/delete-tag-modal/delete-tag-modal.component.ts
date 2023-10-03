@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FuelService } from '../services/fuel.service';
 import { TokenService } from '../services/token.service';
@@ -45,7 +45,7 @@ export class DeleteTagModalComponent {
     this.getAllSearchedVehicles();
 
   }
-  returnCarId(cardId: string) {
+  returnCardId(cardId: string) {
     console.log('Received card ID:', cardId);
     this.chosenId = cardId;
     console.log('Chosen card ID:', this.chosenId);
@@ -77,6 +77,7 @@ export class DeleteTagModalComponent {
       });
     }
   }
+
   getSearchedCount(){
       const inputElement = document.querySelector('.searchInput') as HTMLInputElement;
       const searchText = inputElement.value; 
@@ -91,15 +92,63 @@ export class DeleteTagModalComponent {
       })
   }
 
-  deleteTagByCardId(){
+  deleteTagByCardId(tagId: string){
+    if (!this.chosenId) {
+      console.error('No card provided for deletion');
+      return;
+    }
+    const token = this.tokenService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http
+      .delete(`https://localhost:5001/api/FuelTracking/DeleteVehicleBYcardId?tagId=${tagId}`, {
+        headers,
+        observe: 'response',
+      })
+      .subscribe({
+        next:  (response: HttpResponse<any>) => {
+          if (response.status === 200) {
+            console.log('Deleted car:', response);
+  
+            // Remove the car visually
+            this.removeDeletedCard(tagId);
+          } else {
+            console.error('Failed to delete car. Status code:', response.status);
+          }
+        },
+        error :(error) => {
+          console.error('Error deleting car by id:', error);
+        }
+      })
 
   }
 
+  removeDeletedCard(tagId: string) {
+    if (!tagId) {
+      console.error('No card is selected for deletion');
+      return;
+    }
 
-  
+    console.log('Deleting car with ID:', tagId);
+
+    const index = this.allIdentifiedTags.findIndex((tag) => tag.cardId === tagId);
+
+    if (index !== -1) {
+      // Remove the tag from the array using splice
+      this.allIdentifiedTags.splice(index, 1);
+
+      if (this.searchedCount > 0) {
+        this.searchedCount--;
+      }
+
+      console.log('Deleted card with cardId:', tagId);
+    } else {
+      console.error('Card not found in the array');
+    }
+}
   
 
-  }
+}
 
   
 
