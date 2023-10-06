@@ -64,7 +64,7 @@ export class DeleteTagModalComponent {
    console.log(searchText)
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
 
-     return this.http.get(`https://localhost:5001/api/FuelTracking/GetAllSearchedVehicles?pageIndex=${this.pageIndex}&text=${searchText}`, { headers }).subscribe({
+     return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetAllSearchedVehicles?pageIndex=${this.pageIndex}&text=${searchText}`, { headers }).subscribe({
         next: (response) => {
           this.allIdentifiedTags = response;
           console.log('I am logging tag reg response: ', response);
@@ -81,7 +81,7 @@ export class DeleteTagModalComponent {
   getSearchedCount(){
       const inputElement = document.querySelector('.searchInput') as HTMLInputElement;
       const searchText = inputElement.value; 
-      return this.http.get(`https://localhost:5001/api/FuelTracking/GetCountedVehicles?text=${searchText}`).subscribe({
+      return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetCountedVehicles?text=${searchText}`).subscribe({
         next: (response) => {
           console.log(response)
           this.searchedCount = response;
@@ -101,7 +101,7 @@ export class DeleteTagModalComponent {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     this.http
-      .delete(`https://localhost:5001/api/FuelTracking/DeleteVehicleBYcardId?tagId=${tagId}`, {
+      .delete(`https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/DeleteVehicleBYcardId?tagId=${tagId}`, {
         headers,
         observe: 'response',
       })

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild  } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TokenService } from '../services/token.service';
@@ -12,6 +12,7 @@ import { UserService } from '../services/user.service';
 import { EditTagModalComponent } from '../edit-tag-modal/edit-tag-modal.component';
 import { HttpClient } from '@angular/common/http';
 import { FuelService } from '../services/fuel.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-tags-controll',
@@ -32,7 +33,7 @@ export class TagsControllComponent {
   filterTxt: string = '';
   isSidebarOpen = false;
   userName: string;
-  
+  @ViewChild('table') table: ElementRef;
 
   constructor(    private tokenService: TokenService,
     private _modal: NgbModal,
@@ -40,7 +41,8 @@ export class TagsControllComponent {
     private notificationService: NotificationService,
     private userService: UserService,
     private http: HttpClient,
-    private fuelService: FuelService
+    private fuelService: FuelService,
+    private renderer: Renderer2
     )
     
     {
@@ -65,7 +67,10 @@ export class TagsControllComponent {
   
   
   }
-
+  ngAfterViewInit() {
+    const tableElement = this.renderer.selectRootElement('.matTable'); // Replace '.matTable' with your actual CSS class or element selector
+    // Now you can use 'tableElement' to manipulate the DOM
+  }
   getUnidentifiedtags(){
     this.fuelService.getAllTags().subscribe({
       next: (data: any) =>{
@@ -157,5 +162,23 @@ openEditTags() {
   modalRef.componentInstance.isCardNumberDisabled = true; 
 }
 
+
+ExportTOExcel(data: any[], filename: string)
+{
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+  /* save to file */
+  XLSX.writeFile(wb, filename + '.xlsx');
+  
+}
+exportToExcel() {
+  // Prepare the data to be exported, for example, using this.dataSource
+  const dataToExport = this.dataSource.data;
+
+  // Call the ExportTOExcel function passing the data and filename
+  this.ExportTOExcel(dataToExport, 'TablesSize');
+}
 }
 

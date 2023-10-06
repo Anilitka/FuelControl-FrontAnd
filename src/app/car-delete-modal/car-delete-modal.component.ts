@@ -65,7 +65,7 @@ export class CarDeleteModalComponent implements OnInit {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   
     this.http
-      .delete(`https://localhost:5001/api/UserCar/DeleteCarById?id=${id}`, {
+      .delete(`https://mygpsadminbe.mygps.ge:4436/api/UserCar/DeleteCarById?id=${id}`, {
         headers,
         observe: 'response',
       })

@@ -49,7 +49,7 @@ sendDataToServer() {
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
    if(body.vehicleName != null){
-    this.http.patch('https://localhost:5001/api/FuelTracking/UpdateTag', body, {headers})
+    this.http.patch('https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/UpdateTag', body, {headers})
     
       .subscribe({
         next: (response) => {

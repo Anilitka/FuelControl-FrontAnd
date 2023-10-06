@@ -42,7 +42,7 @@ tagRegistration(){
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
 
-    this.http.post('https://localhost:5001/api/FuelTracking/CreateTag', body, { headers } ).subscribe({
+    this.http.post('https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/CreateTag', body, { headers } ).subscribe({
       next: (response) => {
         console.log('I am logging car reg response: ', response);
         this.addTagForm.reset(); 
