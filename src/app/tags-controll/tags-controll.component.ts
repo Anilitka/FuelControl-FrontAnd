@@ -33,7 +33,7 @@ export class TagsControllComponent {
   filterTxt: string = '';
   isSidebarOpen = false;
   userName: string;
-  @ViewChild('table') table: ElementRef;
+
 
   constructor(    private tokenService: TokenService,
     private _modal: NgbModal,
@@ -67,10 +67,7 @@ export class TagsControllComponent {
   
   
   }
-  ngAfterViewInit() {
-    const tableElement = this.renderer.selectRootElement('.matTable'); // Replace '.matTable' with your actual CSS class or element selector
-    // Now you can use 'tableElement' to manipulate the DOM
-  }
+
   getUnidentifiedtags(){
     this.fuelService.getAllTags().subscribe({
       next: (data: any) =>{
@@ -169,15 +166,13 @@ ExportTOExcel(data: any[], filename: string)
   const wb: XLSX.WorkBook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-  /* save to file */
   XLSX.writeFile(wb, filename + '.xlsx');
   
 }
 exportToExcel() {
-  // Prepare the data to be exported, for example, using this.dataSource
+
   const dataToExport = this.dataSource.data;
 
-  // Call the ExportTOExcel function passing the data and filename
   this.ExportTOExcel(dataToExport, 'TablesSize');
 }
 }
