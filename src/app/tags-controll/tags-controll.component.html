@@ -67,9 +67,10 @@
     </div>
   </div> 
 <input [(ngModel)]="filterTxt" class="form-control mr-2 searchInput" #search style="width: 300px" placeholder="Search" type="text" (input)="applyFilter()">
+<button class="btn btn-primary excelBtn" (click)="exportToExcel()">Export as Excel</button>
 <div class="tableContainer">
 
-  <button mat-raised-button color="primary" (click)="exportToExcel()">Export as Excel</button>
+
 <table mat-table  [dataSource]="dataSource | search: filterTxt" class="matTable"> 
 
  

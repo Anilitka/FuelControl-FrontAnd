@@ -162,7 +162,11 @@ openEditTags() {
 
 ExportTOExcel(data: any[], filename: string)
 {
-  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+  const modifiedData = data.map(item => ({
+    CardNumber: item.cardId,
+    VehicleName: item.VehicleName || 'Unknown'  
+  }));
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(modifiedData);
   const wb: XLSX.WorkBook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
@@ -175,5 +179,7 @@ exportToExcel() {
 
   this.ExportTOExcel(dataToExport, 'TablesSize');
 }
+
+
 }
 
