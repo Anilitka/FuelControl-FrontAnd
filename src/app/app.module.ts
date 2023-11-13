@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEnGB from '@angular/common/locales/en-GB';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +43,7 @@ export function tokenGetter() {
 }
 
 defineLocale('enGb', enGbLocale);
+registerLocaleData(localeEnGB, 'en-GB');
 
 @NgModule({
   declarations: [

@@ -67,7 +67,9 @@
     </div>
   </div> 
 <input [(ngModel)]="filterTxt" class="form-control mr-2 searchInput" #search style="width: 300px" placeholder="Search" type="text" (input)="applyFilter()">
-<button class="btn btn-primary excelBtn" (click)="exportToExcel()">Export as Excel</button>
+
+
+
 <div class="tableContainer">
 
 
@@ -98,4 +100,7 @@
 
   <mat-paginator [pageSize]="15" [pageSizeOptions]="[15, 30, 45, 100]" showFirstLastButtons></mat-paginator>
  </div> 
+<!-- <a class="excelBtn" (click)="exportToExcel()">Export as Excel</a> -->
+<button class="btn btn-primary excelBtn" (click)="exportToExcel()">Export as Excel</button>
 
+<!-- <button class="btn btn-secondary">Test button</button> -->

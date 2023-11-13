@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {TokenService} from "../services/token.service";
 import {UserService} from "../services/user.service";
+import { Observable, map } from 'rxjs';
 
 
 
@@ -67,6 +68,7 @@ export class LoginFormComponent {
           sessionStorage.setItem('userRole', this.tokenService.getUserRole());
           sessionStorage.setItem('userName', loginData.userName);
 
+
           this.tokenService.setUserInformation(this.tokenService.getUserRole(), loginData.userName);
 
           this.loginForm.reset();
@@ -87,5 +89,18 @@ export class LoginFormComponent {
   goToregistration(){
     this.router.navigate(['registration'])
   }
+
+  // login(username: string, password: string): Observable<any> {
+  //   return this.http.post<any>('api/login', { username, password }).pipe(
+  //     map(response => {
+  //       // Assuming response contains a token after successful login
+  //       if (response && response.token) {
+  //         // Store token in sessionStorage
+  //         sessionStorage.setItem('token', response.token);
+  //       }
+  //       return response;
+  //     })
+  //   );
+  // }
 
 }

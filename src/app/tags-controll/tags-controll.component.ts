@@ -22,7 +22,7 @@ import * as XLSX from 'xlsx';
 
 export class TagsControllComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  dataSource!: MatTableDataSource<any>;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   isAdmin: boolean;
   displayedColumns: string[] = [
     'CardNumber',
@@ -53,6 +53,7 @@ export class TagsControllComponent {
   }
   
   ngOnInit(): void {
+    
     this.getUnidentifiedtags();
     this.checkAdmin();
   
@@ -67,6 +68,7 @@ export class TagsControllComponent {
   
   
   }
+
 
   getUnidentifiedtags(){
     this.fuelService.getAllTags().subscribe({
@@ -135,7 +137,8 @@ goToFuelHistory(){
 }
 
 goTotags(){
-  this.router.navigate(['tags'])
+  this.router.navigate(['tags']);
+
 }
 
 openAddTags() {

@@ -22,7 +22,7 @@ export class TokenService {
   }
 
   private extractPayloadFromToken() {
-    const token = sessionStorage.getItem('token');
+    // const token = sessionStorage.getItem('token');
     this.payload = this.jwtHelper.decodeToken(this.token);
   }
   setUserInformation(userRole: string, userName: string) {
