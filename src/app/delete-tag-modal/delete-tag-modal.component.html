@@ -9,7 +9,7 @@
             <h4 class="modal-title" style="margin-top: 15px;">Delete Tag</h4>
         </div>
         <div class="inputdiv">
-         <input  class="form-control mr-2 searchInput" #search style="width: 250px; height: 40px;" placeholder=" Search" type="text">
+         <input  class="form-control mr-2 searchInput" [(ngModel)]="searchInputValue" #search style="width: 250px; height: 40px;" placeholder=" Search" type="text">
         <button class="btn btn-success searchbtn" (click)="getAllSearchedVehicles();getSearchedCount()">Search</button>   
         </div>
         <div *ngIf="errorMessage" class="error-message">

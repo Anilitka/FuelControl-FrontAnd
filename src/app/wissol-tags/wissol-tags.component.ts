@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild  } from '@angular/core';
+import { Component, Renderer2, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TokenService } from '../services/token.service';
@@ -15,12 +15,11 @@ import { FuelService } from '../services/fuel.service';
 import * as XLSX from 'xlsx';
 
 @Component({
-  selector: 'app-tags-controll',
-  templateUrl: './tags-controll.component.html',
-  styleUrls: ['./tags-controll.component.css']
+  selector: 'app-wissol-tags',
+  templateUrl: './wissol-tags.component.html',
+  styleUrls: ['./wissol-tags.component.css']
 })
-
-export class TagsControllComponent {
+export class WissolTagsComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   isAdmin: boolean;
@@ -132,12 +131,9 @@ goToFuelHome(){
 this.router.navigate(['home'])
 }
 
-goToFuelHistory(){
-  this.router.navigate(['history'])
-}
 
 goTotags(){
-  this.router.navigate(['tags']);
+  this.router.navigate(['wissolTags']);
 
 }
 
@@ -183,6 +179,4 @@ exportToExcel() {
   this.ExportTOExcel(dataToExport, 'TablesSize');
 }
 
-
 }
-

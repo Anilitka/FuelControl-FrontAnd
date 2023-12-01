@@ -17,6 +17,7 @@ export class FuelService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
 }
 
+// https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetAllFuelHistory?pageindex=1&pagesize=15
 
 
 getCarListData(pageindex: number, pagesize: number) {
@@ -81,7 +82,7 @@ getAllCarsWithNoInspection(){
 
 getAllTags(){
   const headers = this.getHeaders();
-  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetAllUnidentifiedTags', { headers });
+  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/Wissol/GetAllUnidentifiedTags', { headers });
 }
 }
 

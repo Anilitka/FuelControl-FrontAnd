@@ -42,10 +42,7 @@ export class LoginFormComponent {
     if (this.loginForm.invalid) {
       return;
     }
-    // else if(this.loginForm.valid){
-    //   this.loginForm.reset();
-    //   this.router.navigate(['home'])
-    // }
+
     else if (this.loginForm.valid) {
       const loginData = {
         userName: this.loginForm.value.email,
@@ -57,7 +54,7 @@ export class LoginFormComponent {
       this.http.post<any>('https://mygpsadminbe.mygps.ge:4436/api/Authorization/Login', loginData).subscribe({
         next: (response) => {
           console.log(response);
-
+          console.log(response.token)
           this.token = response.token;
 
 
@@ -65,6 +62,7 @@ export class LoginFormComponent {
 
           this.tokenService.setToken(this.token);
 
+          localStorage.setItem('userRole', this.tokenService.getUserRole());
           sessionStorage.setItem('userRole', this.tokenService.getUserRole());
           sessionStorage.setItem('userName', loginData.userName);
 
@@ -90,17 +88,6 @@ export class LoginFormComponent {
     this.router.navigate(['registration'])
   }
 
-  // login(username: string, password: string): Observable<any> {
-  //   return this.http.post<any>('api/login', { username, password }).pipe(
-  //     map(response => {
-  //       // Assuming response contains a token after successful login
-  //       if (response && response.token) {
-  //         // Store token in sessionStorage
-  //         sessionStorage.setItem('token', response.token);
-  //       }
-  //       return response;
-  //     })
-  //   );
-  // }
+
 
 }

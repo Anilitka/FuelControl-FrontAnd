@@ -17,12 +17,14 @@ export class TokenService {
 
   setToken(token: string) {
     this.token = token;
+    localStorage.setItem('token', token);
     sessionStorage.setItem('token', token);
+
     this.extractPayloadFromToken();
   }
 
   private extractPayloadFromToken() {
-    // const token = sessionStorage.getItem('token');
+   
     this.payload = this.jwtHelper.decodeToken(this.token);
   }
   setUserInformation(userRole: string, userName: string) {

@@ -23,6 +23,7 @@ export class DeleteTagModalComponent {
   searchedCount:any ;
   errorMessage:any = '';
   chosenId:any;
+  searchInputValue: string = '';
 
   ngOnInit(): void {
 
@@ -53,16 +54,18 @@ export class DeleteTagModalComponent {
  
   getAllSearchedVehicles() {
     this.searchOpened = true;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
     const inputElement = document.querySelector('.searchInput') as HTMLInputElement;;
-
+    
     if (inputElement) {
-      const searchText = inputElement.value;
+     
+      const searchText = this.searchInputValue;
       if (searchText.length < 5) {
         this.errorMessage = 'Please enter at least 5 characters.';
         return;
       }
    console.log(searchText)
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
+      
 
      return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetAllSearchedVehicles?pageIndex=${this.pageIndex}&text=${searchText}`, { headers }).subscribe({
         next: (response) => {
@@ -79,9 +82,13 @@ export class DeleteTagModalComponent {
   }
 
   getSearchedCount(){
-      const inputElement = document.querySelector('.searchInput') as HTMLInputElement;
-      const searchText = inputElement.value; 
-      return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetCountedVehicles?text=${searchText}`).subscribe({
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.tokenService.getToken()}`);
+
+      const searchText = this.searchInputValue;
+
+      console.log('Search text:', searchText);
+
+      return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetCountedVehicles?text=${searchText}`, { headers }).subscribe({
         next: (response) => {
           console.log(response)
           this.searchedCount = response;
@@ -110,7 +117,7 @@ export class DeleteTagModalComponent {
           if (response.status === 200) {
             console.log('Deleted car:', response);
   
-            // Remove the car visually
+     
             this.removeDeletedCard(tagId);
           } else {
             console.error('Failed to delete car. Status code:', response.status);
@@ -134,7 +141,7 @@ export class DeleteTagModalComponent {
     const index = this.allIdentifiedTags.findIndex((tag) => tag.cardId === tagId);
 
     if (index !== -1) {
-      // Remove the tag from the array using splice
+
       this.allIdentifiedTags.splice(index, 1);
 
       if (this.searchedCount > 0) {

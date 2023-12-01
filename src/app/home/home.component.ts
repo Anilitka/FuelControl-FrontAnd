@@ -27,4 +27,7 @@ goToTechControll(){
 goToTagsControll(){
   this.router.navigate(['tags'])
 }
+goToWissolTags(){
+  this.router.navigate(['wissolTags'])
+}
 }

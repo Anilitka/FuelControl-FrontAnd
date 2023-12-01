@@ -72,7 +72,8 @@ export class HistoryComponent implements OnInit{
   previousCardID: string = '';
   encodedStartDate;
   encodedEndDate;
-  allLiters: any[] = []
+  allLiters: any[] = [];
+  userRole: any;
 
 
 
@@ -106,7 +107,6 @@ ngOnInit(): void {
     console.log('I am logging car list data:',this.carsData);
     this.getAllCount();
     this.retrieveUserInformation();
-
 
 }
 
@@ -142,6 +142,7 @@ fillCarsInfo(){
         if (data && data.length > 0) {
           this.totalItems = data.length;
           this.totalPages = Math.ceil((this.totalData / this.pagesize));
+          console.log(this.totalData  )
       }
       console.log('total pages', this.totalPages)
        
@@ -156,18 +157,19 @@ fillCarsInfo(){
 
 getAllCount(){
   this.fuelService.getCount().subscribe({
-    next: (data: number) => {
+    next: (data: any) => {
       this.totalData = data;
+      console.log(data)
       console.log('all data', this.totalData)
     },
     error: (error) => {
-      console.error('Error loading cars data by id:', error)
+      console.error('Error loading all cars data :', error)
     }
   })
 }
 getCountById(){
   this.fuelService.getCountById(this.chosenId).subscribe({
-    next: (data: number) => {
+    next: (data: any) => {
       this.totalDatabyId = data;
       console.log('dat by id', this.totalDatabyId)
       this.totalIdPages = (this.totalDatabyId / 10)
@@ -266,7 +268,9 @@ reloadCurrentPage() {
 }
 
 checkAdmin(){
-  if(this.tokenService.getUserRole().includes("Manager")){
+  this.userRole = this.tokenService.getUserRole();
+  console.log(this.userRole)
+  if(this.userRole.includes("Manager")){
     this.isAdmin=true;
   }
 }
@@ -293,15 +297,8 @@ this.router.navigate(['home'])
 goToFuelHistory(){
   this.router.navigate(['history'])
 }
-goTotags(){
-  this.router.navigate(['tags'])
-}
-openAddTags() {
-  this._modal.open(AddTagModalComponent)
-}
-openDeleteTags(){
-  this._modal.open(DeleteTagModalComponent)
-}
+
+
 }
  
 

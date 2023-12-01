@@ -9,9 +9,10 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { CompanyRegistrationComponent } from './company-registration/company-registration.component';
 import { DangerFineComponent } from './danger-fine/danger-fine.component';
 import { TechControllComponent } from './tech-controll/tech-controll.component';
-import { TagsControllComponent } from './tags-controll/tags-controll.component';
+// import { TagsControllComponent } from './tags-controll/tags-controll.component';
 import { AddTagModalComponent } from './add-tag-modal/add-tag-modal.component';
 import { DeleteTagModalComponent } from './delete-tag-modal/delete-tag-modal.component';
+import { WissolTagsComponent } from './wissol-tags/wissol-tags.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -23,9 +24,10 @@ const routes: Routes = [
   {path: 'company-registration', component: CompanyRegistrationComponent },
   {path: 'dangerFine', component: DangerFineComponent},
   {path: 'techControll', component: TechControllComponent},
-  {path: 'tags', component: TagsControllComponent},
+  // {path: 'tags', component: TagsControllComponent},
   {path: 'addTags', component: AddTagModalComponent},
   {path: 'deleteTags', component: DeleteTagModalComponent},
+  {path: 'wissolTags', component: WissolTagsComponent},
 
 ];
 
