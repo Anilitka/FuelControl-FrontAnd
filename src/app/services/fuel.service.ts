@@ -21,12 +21,12 @@ export class FuelService {
 
 getCarListData(pageindex: number, pagesize: number) {
     const headers = this.getHeaders();
-    return this.http.get(`https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetAllFuelHistory?pageindex=${pageindex}&pagesize=${pagesize}` , { headers });
+    return this.http.get(`https://` , { headers });
 }
 
 getCarDataById(Id: string, page: number, startDate?: string, endDate?: string) {
   const headers = this.getHeaders();
-  let url = `https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetWialonById?cardID=${Id}&page=${page}`;
+  let url = `https://`;
 
   if (startDate && endDate) {
     url += `&startDate=${startDate}&endDate=${endDate}`;
@@ -43,45 +43,45 @@ getCarDataById(Id: string, page: number, startDate?: string, endDate?: string) {
 
 getRole(){
     const headers = this.getHeaders();
-    return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/Roles/GetAllRoles', {headers})
+    return this.http.get('https://', {headers})
 }
 
 
 getCount(): Observable<number>{
   const headers = this.getHeaders();
-  return this.http.get<number>('https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetAllCount', {headers})
+  return this.http.get<number>('https://', {headers})
 }
 
 getCountById(Id:string){
   const headers = this.getHeaders();
-  return this.http.get<number>(`https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetAllCount?cardId=${Id}`, {headers})
+  return this.http.get<number>(`https://`, {headers})
 }
 
 getAllCars(): Observable<any>{
   const headers = this.getHeaders();
-  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/UserCar/GetAllCars', {headers})
+  return this.http.get('https://', {headers})
 }
 
  getCompanies(){
   const headers = this.getHeaders();
-  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/Company/GetAllCompanies', { headers });
+  return this.http.get('https://', { headers });
 }
 getAllCompaniesWithCars(){
   const headers = this.getHeaders();
-  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/Company/GetAllCompaniesWithCars', { headers });
+  return this.http.get('https://', { headers });
 }
 getAllDangerFines(){
   const headers = this.getHeaders();
-  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/Fine/GetAllDangerFine', { headers });
+  return this.http.get('https://', { headers });
 }
 getAllCarsWithNoInspection(){
   const headers = this.getHeaders();
-  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/TechCar/GetAllCarsWithNoInspection', { headers });
+  return this.http.get('https://', { headers });
 }
 
 getAllTags(){
   const headers = this.getHeaders();
-  return this.http.get('https://mygpsadminbe.mygps.ge:4436/api/FuelTracking/GetAllUnidentifiedTags', { headers });
+  return this.http.get('https://', { headers });
 }
 }
 
